@@ -130,6 +130,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameSetup.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mooGame.cpp" />
     <ClCompile Include="sprites.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="animationFrame.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameSetup.h" />
+    <ClInclude Include="mooGame.h" />
     <ClInclude Include="sprites.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,8 +12,7 @@ namespace animation {
 
 	public: int getTime();
 	public: void render(games::GameSetup *g, int x, int y);
-	public: void init(SDL_Surface *newSurface, SDL_Rect src, float newTime = 1);
-	public: void setup(games::GameSetup *g, std::string filename, int time);
+	public: void setup(games::GameSetup *newG, std::string filename, int newTime);
 	public: void cleanup();
 	};
 }

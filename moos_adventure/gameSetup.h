@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <SDL.h>
+#undef main
 
 namespace games {
 	class GameSetup {
@@ -13,11 +14,12 @@ namespace games {
 
 	public: int getMaxX();
 	public: int getMaxY();
+	public: void setDone(bool value);
 	public: SDL_Renderer *getRenderer();
 	public: void init(std::string WindowName = "Game", int newMaxX = 640, int newMaxY = 480);
 	public: virtual void setup() = 0;
 	public: virtual void loop(float dt) = 0;
-	public: virtual void cleanup() = 0;
+	//public: virtual void cleanup() = 0;
 	public: virtual void eventHandler(SDL_Event) = 0;
 	public: void run();
 	public: void exit();

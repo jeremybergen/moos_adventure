@@ -1,3 +1,4 @@
+#include <iostream>
 #include "animationFrame.h"
 
 int animation::animationFrame::getTime() {
@@ -18,12 +19,26 @@ void animation::animationFrame::render(games::GameSetup *g, int x, int y) {
 	SDL_RenderCopy(g->getRenderer(), texture, &src, &dest);
 }
 
-void animation::animationFrame::init(SDL_Surface *newSurface, SDL_Rect src, float newTime = 1) {
-
-}
-
-void animation::animationFrame::setup(games::GameSetup *g, std::string filename, int time) {
-
+void animation::animationFrame::setup(games::GameSetup *newG, std::string filename, int newTime) {
+	done = false;
+	g = newG;
+	time = newTime;
+	SDL_Surface *image = SDL_LoadBMP(filename.c_str());
+	if (image == NULL) {
+		std::cout << "Could not load image: " << SDL_GetError() << std::endl;
+		done = true;
+		return;
+	}
+	SDL_SetColorKey(image, SDL_TRUE, SDL_MapRGB(image->format, 0, 255, 0));
+	texture = SDL_CreateTextureFromSurface(g->getRenderer(), image);
+	if (texture == NULL) {
+		std::cout << "In animationFrame" << std::endl;
+		std::cout << "Could not create texture: " << SDL_GetError() << std::endl;
+		done = true;
+		return;
+	}
+	SDL_FreeSurface(image);
+	SDL_QueryTexture(texture, NULL, NULL, &w, &h);
 }
 
 void animation::animationFrame::cleanup() {
