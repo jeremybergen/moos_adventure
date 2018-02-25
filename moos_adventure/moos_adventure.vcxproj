@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="animationFrame.cpp" />
+    <ClCompile Include="controls.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameSetup.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animationFrame.h" />
+    <ClInclude Include="controls.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameSetup.h" />
     <ClInclude Include="mooGame.h" />

@@ -7,13 +7,14 @@
 
 namespace sprites {
 	class Sprites {
-	private: games::GameSetup *g;
-	private: std::string filename;
-	private: int w, h, count;
-	private: float aX, aY, vX, vY, pX, pY, t0;
-	private: bool done;
-	private: std::vector<animation::animationFrame> frames;
-	private: int totalAnimationTime, totalGameTime;
+	protected: games::GameSetup *g;
+	protected: std::string filename;
+	protected: int w, h;
+	protected: float aX, aY, vX, vY, pX, pY, t0;
+	protected: bool done;
+	protected: std::vector<animation::animationFrame> frames;
+	protected: int totalAnimationTime, totalGameTime;
+	protected: int count;
 
 	public: void add(animation::animationFrame af);
 	public: virtual void loop(float dt);

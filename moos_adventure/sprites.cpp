@@ -14,8 +14,8 @@ void sprites::Sprites::add(animation::animationFrame af) {
 void sprites::Sprites::loop(float dt) {
 	vY = vY + aY * dt;
 	vX = vX + aX * dt;
-	pY = pY + pY * dt;
-	pX = pX + pX * dt;
+	//pY = pY + pY * dt;
+	//pX = pX + pX * dt;
 	totalGameTime += (int)(dt*1000.0);
 }
 
