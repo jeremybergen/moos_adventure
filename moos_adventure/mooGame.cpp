@@ -9,11 +9,17 @@ void games::mooGame::setup() {
 	//sprites::Sprites back = new sprites::Sprites();
 	sprites::Sprites *back = new sprites::Sprites();
 	//sprites::Sprites *controls = new sprites::Controls();
+	sprites::Sprites *character = new sprites::Sprites();
 	std::vector<sprites::Controls *> controls;
 	back->init(this, "img\\back", 1);
 	//back->init(this, "ctrl_", 2);
 	back->setup();
 	add(back);
+
+	character->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	character->setup();
+	add(character);
+	
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {

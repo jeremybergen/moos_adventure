@@ -135,6 +135,15 @@
     <ClCompile Include="sprites.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="img\back0.bmp" />
+    <Image Include="img\ctrl_down0.bmp" />
+    <Image Include="img\ctrl_left0.bmp" />
+    <Image Include="img\ctrl_pick_drop0.bmp" />
+    <Image Include="img\ctrl_right0.bmp" />
+    <Image Include="img\ctrl_up0.bmp" />
+    <Image Include="img\moo0.bmp" />
+    <Image Include="img\moo_50px.bmp" />
+    <Image Include="img\moo_static.bmp" />
     <Image Include="img\moo_static.png" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +153,16 @@
     <ClInclude Include="gameSetup.h" />
     <ClInclude Include="mooGame.h" />
     <ClInclude Include="sprites.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\background.xcf" />
+    <None Include="img\down.xcf" />
+    <None Include="img\left.xcf" />
+    <None Include="img\moo_50px.xcf" />
+    <None Include="img\moo_static.xcf" />
+    <None Include="img\pick_drop.xcf" />
+    <None Include="img\right.xcf" />
+    <None Include="img\up.xcf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
