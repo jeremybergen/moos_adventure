@@ -44,6 +44,33 @@
     <Image Include="img\moo_static.png">
       <Filter>img</Filter>
     </Image>
+    <Image Include="img\back0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\ctrl_down0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\ctrl_left0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\ctrl_pick_drop0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\ctrl_right0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\ctrl_up0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo_50px.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo_static.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo0.bmp">
+      <Filter>img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameSetup.h">
@@ -64,5 +91,31 @@
     <ClInclude Include="controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\background.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\down.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\left.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\moo_50px.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\moo_static.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\pick_drop.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\right.xcf">
+      <Filter>img</Filter>
+    </None>
+    <None Include="img\up.xcf">
+      <Filter>img</Filter>
+    </None>
   </ItemGroup>
 </Project>
