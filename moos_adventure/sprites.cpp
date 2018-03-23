@@ -19,6 +19,20 @@ void sprites::Sprites::loop(float dt) {
 	totalGameTime += (int)(dt*1000.0);
 }
 
+void sprites::Sprites::moveCharacter(float newPX, float newPY) {
+	pX = newPX;
+	pY = newPY;
+
+}
+
+float sprites::Sprites::getPx() {
+	return pX;
+}
+
+float sprites::Sprites::getPy() {
+	return pY;
+}
+
 void sprites::Sprites::cleanup() {
 	for (unsigned i = 0; i < frames.size(); i++){
 		frames[i].cleanup();
