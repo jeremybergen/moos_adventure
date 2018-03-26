@@ -1,7 +1,7 @@
 #include "controls.h"
 
 
-void sprites::Controls::init(games::GameSetup *newG, std::string newFilename, int newCount, float newAX, float newAY, float newVX, float newVY, float newPX, float newPY, int newT0) {
+void sprites::Controls::init(games::GameSetup *newG, std::string newFilename, int newCount, float newAX, float newAY, float newVX, float newVY, float newPX, float newPY, int newT0, int newAction) {
 	g = newG;
 	filename = newFilename;
 	count = newCount;
@@ -12,4 +12,9 @@ void sprites::Controls::init(games::GameSetup *newG, std::string newFilename, in
 	vY = newVY;
 	pX = newPX;
 	pY = newPY;
+	action = newAction;
+}
+
+int sprites::Controls::getAction() {
+	return action;
 }
