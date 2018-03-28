@@ -16,7 +16,7 @@ void games::GameSetup::setDone(bool value) {
 }
 
 SDL_Renderer *games::GameSetup::getRenderer() {
-	return games::GameSetup::renderer;
+	return renderer;
 }
 
 //void games::GameSetup::init(std::string WindowName = "Moo's Adventure", int newMaxX = 640, int newMaxY = 480) {

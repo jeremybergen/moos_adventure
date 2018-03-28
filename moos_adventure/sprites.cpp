@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "sprites.h"
+//#include "gameSetup.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
 
@@ -12,17 +13,53 @@ void sprites::Sprites::add(animation::animationFrame af) {
 }
 
 void sprites::Sprites::loop(float dt) {
-	vY = vY + aY * dt;
-	vX = vX + aX * dt;
-	//pY = pY + pY * dt;
-	//pX = pX + pX * dt;
+	//vY = 0;
+	pY = pY + vY * dt;
+	//vX = 0;
+	pX = pX + vX * dt;
 	totalGameTime += (int)(dt*1000.0);
+
+	//vY = vY + aY * dt;
+	//vX = vX + aX * dt;
 }
 
-void sprites::Sprites::moveCharacter(float newPX, float newPY) {
-	pX = newPX;
-	pY = newPY;
+void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character){
+	int speed = 5;
+	if (pX < newPX) {
+		while (pX < newPX) {
+			vX = speed;
+			pX = pX + vX * 0.01;
+			character->render();
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pX > newPX) {
+		while (pX > newPX) {
+			vX = speed;
+			pX = pX - vX * 0.01;
+			character->render();
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pY < newPY) {
+		while (pY < newPY) {
+			vY = speed;
+			pY = pY + vY * 0.01;
+			character->render();
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pY > newPY) {
+		while (pY > newPY) {
+			vY = speed;
+			pY = pY - vY * 0.01;
+			character->render();
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
 
+	vX = 0;
+	vY = 0;
 }
 
 float sprites::Sprites::getPx() {
