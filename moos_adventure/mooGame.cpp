@@ -19,7 +19,7 @@ void games::mooGame::setup() {
 	add(back);
 
 	sprites::Sprites *moo = new sprites::Sprites();
-	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	moo->init(this, "img\\moo", 1, 0, 50, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
 	add(moo);
 	character.push_back(moo);
@@ -70,16 +70,16 @@ void games::mooGame::evalControls() {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
-			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy());
+			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0]);
 			break;
 		case 2:
-			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy());
+			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0]);
 			break;
 		case 3:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0]);
 			break;
 		case 4:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0]);
 			break;
 		case 5:
 			break;
