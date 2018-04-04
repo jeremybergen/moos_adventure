@@ -15,6 +15,11 @@ void sprites::Controls::init(games::GameSetup *newG, std::string newFilename, in
 	action = newAction;
 }
 
+void sprites::Controls::updateRender() {
+	SDL_RenderPresent(g->getRenderer());
+	//SDL_UpdateWindowSurface(g->getWindow());
+}
+
 int sprites::Controls::getAction() {
 	return action;
 }

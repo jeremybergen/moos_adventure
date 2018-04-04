@@ -17,9 +17,10 @@ void games::mooGame::setup() {
 	//back->init(this, "ctrl_", 2);
 	back->setup();
 	add(back);
+	elements.push_back(back);
 
 	sprites::Sprites *moo = new sprites::Sprites();
-	moo->init(this, "img\\moo", 1, 0, 50, 0, 0, 25.0, 150.0, 0);
+	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
 	add(moo);
 	character.push_back(moo);
@@ -60,8 +61,14 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 	int pY = 50 + 25 * controls.size();
 	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 505.0, pY, 0, action);
 	ctrl->setup();
-	add(ctrl);
+	addCtrl(ctrl);
+	//add(ctrl);
 	controls.push_back(ctrl);
+	elements.push_back(ctrl);
+}
+
+std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
+	return character;
 }
 
 void games::mooGame::evalControls() {
@@ -70,23 +77,26 @@ void games::mooGame::evalControls() {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
-			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0]);
+			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], elements);
 			break;
 		case 2:
-			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0]);
+			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], elements);
 			break;
 		case 3:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0]);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], elements);
 			break;
 		case 4:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0]);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], elements);
 			break;
 		case 5:
 			break;
 		default:
 			break;
 		}
+		
 		controls.erase(controls.begin());
+		elements.erase(elements.begin()+1);
+		games::Game::removeCtrl();
 	}
 }
 
