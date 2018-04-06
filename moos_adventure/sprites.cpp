@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include "sprites.h"
+//#include "mooGame.h"
 //#include "gameSetup.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
@@ -23,21 +24,43 @@ void sprites::Sprites::loop(float dt) {
 	//vX = vX + aX * dt;
 }
 
-void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character){
+/* void sprites::Sprites::updateSprites() {
+	std::vector<sprites::Sprites *> temp;
+	//temp = games::mooGame::getCharacter();
+	temp = character->getCharacter();
+	DEBUG("-----temp size is:");
+	DEBUG(temp.size());
+	DEBUG("-----end temp size");
+} */
+
+void sprites::Sprites::updateRender() {
+	SDL_RenderPresent(g->getRenderer());
+}
+
+void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, std::vector<sprites::Sprites *> &elements){
 	int speed = 5;
 	if (pX < newPX) {
 		while (pX < newPX) {
 			vX = speed;
 			pX = pX + vX * 0.01;
-			character->render();
+			for (sprites::Sprites *temp : elements) {
+				temp->render();
+				character->render();
+
+			}
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}
 	if (pX > newPX) {
 		while (pX > newPX) {
 			vX = speed;
-			pX = pX - vX * 0.01;
-			character->render();
+			pX = pX - vX * 0.01;			
+			for (sprites::Sprites *temp : elements) {
+				temp->render();
+				character->render();
+
+			}
+
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}
@@ -45,7 +68,12 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 		while (pY < newPY) {
 			vY = speed;
 			pY = pY + vY * 0.01;
-			character->render();
+			for (sprites::Sprites *temp : elements) {
+				temp->render();
+				character->render();
+
+			}
+
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}
@@ -53,7 +81,12 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 		while (pY > newPY) {
 			vY = speed;
 			pY = pY - vY * 0.01;
-			character->render();
+			for (sprites::Sprites *temp : elements) {
+				temp->render();
+				character->render();
+
+			}
+
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}

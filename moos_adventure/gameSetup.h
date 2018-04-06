@@ -16,6 +16,7 @@ namespace games {
 	public: int getMaxY();
 	public: void setDone(bool value);
 	public: SDL_Renderer *getRenderer();
+	public: SDL_Window *getWindow();
 	public: void init(std::string WindowName = "Game", int newMaxX = 640, int newMaxY = 480);
 	public: virtual void setup() = 0;
 	public: virtual void loop(float dt) = 0;
