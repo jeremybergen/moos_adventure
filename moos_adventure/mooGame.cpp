@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "mooGame.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
-
+int no = 1;
 
 void games::mooGame::setup() {
 	//sprites::Sprites back = new sprites::Sprites();
@@ -17,7 +18,7 @@ void games::mooGame::setup() {
 	//back->init(this, "ctrl_", 2);
 	back->setup();
 	add(back);
-	elements.push_back(back);
+	elements.insert({ "back0", back });
 
 	sprites::Sprites *moo = new sprites::Sprites();
 	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
@@ -50,6 +51,7 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 		if (e.key.keysym.sym == SDLK_SPACE) {
 			evalControls();
+			no = 1;
 		}
 	}
 }
@@ -64,7 +66,8 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 	addCtrl(ctrl);
 	//add(ctrl);
 	controls.push_back(ctrl);
-	elements.push_back(ctrl);
+	std::string ncntl = "cntl" + std::to_string(controls.size());
+	elements.insert({ ncntl, ctrl });
 }
 
 std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
@@ -72,30 +75,33 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 }
 
 void games::mooGame::evalControls() {
-	int i = 0;
 	while (controls.size() > 0) {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
-			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], elements);
+			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], elements, no);
+			no++;
 			break;
 		case 2:
-			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], elements);
+			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], elements, no);
+			no++;
 			break;
 		case 3:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], elements);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], elements, no);
+			no++;
 			break;
 		case 4:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], elements);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], elements, no);
+			no++;
 			break;
 		case 5:
 			break;
 		default:
 			break;
 		}
-		
+		std::cout << "" << std::endl;
 		controls.erase(controls.begin());
-		elements.erase(elements.begin()+1);
+		elements.erase("cntl" + no);
 		games::Game::removeCtrl();
 	}
 }
