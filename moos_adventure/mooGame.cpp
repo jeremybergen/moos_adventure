@@ -4,7 +4,7 @@
 #include "mooGame.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
-int no = 1;
+int no = 0;
 
 void games::mooGame::setup() {
 	//sprites::Sprites back = new sprites::Sprites();
@@ -17,13 +17,13 @@ void games::mooGame::setup() {
 	back->init(this, "img\\back", 1);
 	//back->init(this, "ctrl_", 2);
 	back->setup();
-	add(back);
-	elements.insert({ "back0", back });
+	add("back0",back);
+	//elements.insert({ "back0", back });
 
 	sprites::Sprites *moo = new sprites::Sprites();
 	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
-	add(moo);
+	add("moo0",moo);
 	character.push_back(moo);
 	
 }
@@ -51,23 +51,23 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 		if (e.key.keysym.sym == SDLK_SPACE) {
 			evalControls();
-			no = 1;
+			no = 0;
 		}
 	}
 }
 
 void games::mooGame::addControl(std::string newFilename, int action) {
-	DEBUG(games::mooGame::character.size());
+	//DEBUG(games::mooGame::character.size());
 	DEBUG("adding control");
+	std::string ncntl = "cntl" + std::to_string(controls.size());
 	sprites::Controls *ctrl = new sprites::Controls();
 	int pY = 50 + 25 * controls.size();
 	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 505.0, pY, 0, action);
 	ctrl->setup();
-	addCtrl(ctrl);
+	add(ncntl, ctrl);
 	//add(ctrl);
 	controls.push_back(ctrl);
-	std::string ncntl = "cntl" + std::to_string(controls.size());
-	elements.insert({ ncntl, ctrl });
+	//elements.insert({ ncntl, ctrl });
 }
 
 std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
@@ -79,19 +79,19 @@ void games::mooGame::evalControls() {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
-			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], elements, no);
+			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], no);
 			no++;
 			break;
 		case 2:
-			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], elements, no);
+			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], no);
 			no++;
 			break;
 		case 3:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], elements, no);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], no);
 			no++;
 			break;
 		case 4:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], elements, no);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], no);
 			no++;
 			break;
 		case 5:
@@ -101,8 +101,9 @@ void games::mooGame::evalControls() {
 		}
 		std::cout << "" << std::endl;
 		controls.erase(controls.begin());
-		elements.erase("cntl" + no);
-		games::Game::removeCtrl();
+		//elements.erase("cntl" + no);
+		games::Game::remove("cntl" + std::to_string((no - 1)));
+		//no--;
 	}
 }
 

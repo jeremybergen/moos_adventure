@@ -4,6 +4,7 @@
 #include <unordered_map>
 
 #include "gameSetup.h"
+//#include "game.h"
 #include "animationFrame.h"
 //#include "mooGame.h"
 
@@ -21,7 +22,7 @@ namespace sprites {
 
 	public: void add(animation::animationFrame af);
 	public: virtual void loop(float dt);
-	public: virtual void moveCharacter(float newPX, float newPY, sprites::Sprites *character, std::unordered_map<std::string, sprites::Sprites *> &elements, int size);
+	public: virtual void moveCharacter(float newPX, float newPY, sprites::Sprites *character, int size);
 	public: virtual void updateRender();
 	public: virtual void cleanup();
 	public: float getPx();
