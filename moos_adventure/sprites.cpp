@@ -37,17 +37,20 @@ void sprites::Sprites::updateRender() {
 	SDL_RenderPresent(g->getRenderer());
 }
 
-void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, std::vector<sprites::Sprites *> &elements){
+void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, int no){
 	int speed = 5;
+	//std::string cntl = "cntl" + std::to_string(no);
+
 	if (pX < newPX) {
 		while (pX < newPX) {
 			vX = speed;
 			pX = pX + vX * 0.01;
-			for (sprites::Sprites *temp : elements) {
-				temp->render();
-				character->render();
-
-			}
+			
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
+			
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}
@@ -55,11 +58,10 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 		while (pX > newPX) {
 			vX = speed;
 			pX = pX - vX * 0.01;			
-			for (sprites::Sprites *temp : elements) {
-				temp->render();
-				character->render();
-
-			}
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
 
 			SDL_RenderPresent(g->getRenderer());
 		}
@@ -68,11 +70,10 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 		while (pY < newPY) {
 			vY = speed;
 			pY = pY + vY * 0.01;
-			for (sprites::Sprites *temp : elements) {
-				temp->render();
-				character->render();
-
-			}
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
 
 			SDL_RenderPresent(g->getRenderer());
 		}
@@ -81,11 +82,10 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 		while (pY > newPY) {
 			vY = speed;
 			pY = pY - vY * 0.01;
-			for (sprites::Sprites *temp : elements) {
-				temp->render();
-				character->render();
-
-			}
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
 
 			SDL_RenderPresent(g->getRenderer());
 		}
@@ -135,8 +135,8 @@ void sprites::Sprites::setup() {
 		animation::animationFrame af;
 		std::stringstream sstring;
 		//std::cout << "filename is: " << filename << std::endl;
-		DEBUG("filename is: ");
-		DEBUG(filename);
+		//DEBUG("filename is: ");
+		//DEBUG(filename);
 		sstring << filename << i << ".bmp";
 		af.setup(g, sstring.str().c_str(), 100);
 		add(af);
