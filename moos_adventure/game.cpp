@@ -10,14 +10,14 @@ void games::Game::add(std::string key, sprites::Sprites *s) {
 	//sprites.push_back(s);
 }
 
-void games::Game::pAdd(std::string key, sprites::Sprites *s) {
+/*void games::Game::pAdd(std::string key, sprites::Sprites *s) {
 	//DEBUG(s);
 
 	pSprites.insert({ key, s });
 	//sprites.push_back(s);
 }
 
-/*void games::Game::addCtrl(sprites::Sprites *s) {
+void games::Game::addCtrl(sprites::Sprites *s) {
 	controls.push_back(s);
 } */
 
@@ -34,7 +34,7 @@ void games::Game::remove(std::string key) {
 
 	//controls.erase(controls.begin());
 }
-
+/*
 void games::Game::removeP(std::string key) {
 	std::unordered_map<std::string, sprites::Sprites *>::iterator it = pSprites.begin();
 
@@ -48,7 +48,7 @@ void games::Game::removeP(std::string key) {
 
 	//controls.erase(controls.begin());
 }
-
+*/
 void games::Game::loop(float dt) {
 	/*for (unsigned int i = 0; i < sprites.size(); i++) {
 		sprites[i]->loop(dt);
@@ -85,7 +85,7 @@ void games::Game::loop(float dt) {
 
 void games::Game::updateSprites(float dt) {
 	std::unordered_map<std::string, sprites::Sprites *>::iterator it = sprites.begin();
-	std::unordered_map<std::string, sprites::Sprites *>::iterator pIt = pSprites.begin();
+	//std::unordered_map<std::string, sprites::Sprites *>::iterator pIt = pSprites.begin();
 	// Iterate over the map using iterator
 	while (it != sprites.end())
 	{
@@ -101,7 +101,7 @@ void games::Game::updateSprites(float dt) {
 		it++;
 	}
 
-	while (pIt != pSprites.end())
+	/*while (pIt != pSprites.end())
 	{
 		//std::cout << it->first << " :: " << it->second << std::endl;
 
@@ -115,4 +115,5 @@ void games::Game::updateSprites(float dt) {
 		pIt->second->render();
 		pIt++;
 	}
+	*/
 }

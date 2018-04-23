@@ -79,6 +79,9 @@ void games::mooGame::eventHandler(SDL_Event e) {
 			no = 0;
 		}
 	}
+	if (e.type == SDL_MOUSEBUTTONDOWN) {
+		std::cout << e.motion.x << "," << e.motion.y << std::endl;
+	}
 }
 
 void games::mooGame::addControl(std::string newFilename, int action) {
@@ -98,12 +101,12 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 void games::mooGame::addPControl(std::string newFilename, int action) {
 	//DEBUG(games::mooGame::character.size());
 	DEBUG("adding pControl");
-	std::string ncntl = "cntl" + std::to_string(pControls.size());
+	std::string ncntl = "pCntl" + std::to_string(pControls.size());
 	sprites::Controls *ctrl = new sprites::Controls();
 	int pY = 50 + 25 * pControls.size();
 	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 580.0, pY, 0, action);
 	ctrl->setup();
-	pAdd(ncntl, ctrl);
+	add(ncntl, ctrl);
 	//add(ctrl);
 	pControls.push_back(ctrl);
 	//elements.insert({ ncntl, ctrl });
@@ -115,11 +118,11 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 }
 
 void games::mooGame::evalControls() {
-	int u = pControls.size();
+	int u = 0;
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
-			games::Game::removeP("cntl" + std::to_string(u));
+			games::Game::remove("pCntl" + std::to_string(u));
 			u++;
 		}
 
