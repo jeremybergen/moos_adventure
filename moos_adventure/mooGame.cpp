@@ -80,7 +80,22 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 	}
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
+		//400,414  :  450, 414   :   142, 462   :   93, 462
 		std::cout << e.motion.x << "," << e.motion.y << std::endl;
+		if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 15 && e.motion.x < 65)
+			addControl("img\\ctrl_right", 2);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 93 && e.motion.x < 142)
+			addControl("img\\ctrl_left", 1);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 170&& e.motion.x < 218)
+			addControl("img\\ctrl_up", 3);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 250 && e.motion.x < 300)
+			addControl("img\\ctrl_down", 4);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 330 && e.motion.x < 380)
+			addControl("img\\ctrl_pick_drop", 5);
+		if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 400 && e.motion.x < 450) {
+			evalControls();
+			no = 0;
+		}
 	}
 }
 
