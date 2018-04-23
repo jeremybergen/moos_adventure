@@ -70,28 +70,55 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 	//elements.insert({ ncntl, ctrl });
 }
 
+void games::mooGame::addPControl(std::string newFilename, int action) {
+	//DEBUG(games::mooGame::character.size());
+	DEBUG("adding pControl");
+	std::string ncntl = "cntl" + std::to_string(pControls.size());
+	sprites::Controls *ctrl = new sprites::Controls();
+	int pY = 50 + 25 * pControls.size();
+	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 580.0, pY, 0, action);
+	ctrl->setup();
+	pAdd(ncntl, ctrl);
+	//add(ctrl);
+	pControls.push_back(ctrl);
+	//elements.insert({ ncntl, ctrl });
+}
+
+
 std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 	return character;
 }
 
 void games::mooGame::evalControls() {
+	int u = pControls.size();
+	if (pControls.size() != 0)
+		while (pControls.size() > 0) {
+			pControls.erase(pControls.begin());
+			games::Game::removeP("cntl" + std::to_string(u));
+			u++;
+		}
+
 	while (controls.size() > 0) {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
 			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], no);
+			addPControl("img\\ctrl_left", 1);
 			no++;
 			break;
 		case 2:
 			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], no);
+			addPControl("img\\ctrl_right", 2);
 			no++;
 			break;
 		case 3:
 			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], no);
+			addPControl("img\\ctrl_up", 3);
 			no++;
 			break;
 		case 4:
 			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], no);
+			addPControl("img\\ctrl_down", 4);
 			no++;
 			break;
 		case 5:
