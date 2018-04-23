@@ -21,11 +21,36 @@ void games::mooGame::setup() {
 	//elements.insert({ "back0", back });
 
 	sprites::Sprites *moo = new sprites::Sprites();
-	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	moo->init(this, "img\\moo", 4, 0, 0, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
 	add("moo0",moo);
 	character.push_back(moo);
-	
+
+	/* sprites::Sprites *box = new sprites::Sprites();
+	box->init(this, "img\\box", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	box->setup();
+	add("box0", box);
+
+	sprites::Sprites *box2 = new sprites::Sprites();
+	box2->init(this, "img\\box", 1, 0, 0, 0, 0, 75.0, 150.0, 0);
+	box2->setup();
+	add("box1", box2);
+
+	sprites::Sprites *box3 = new sprites::Sprites();
+	box3->init(this, "img\\box", 1, 0, 0, 0, 0, 125.0, 150.0, 0);
+	box3->setup();
+	add("box2", box3);
+
+	sprites::Sprites *mouse = new sprites::Sprites();
+	mouse->init(this, "img\\mouse", 4, 0, 0, 0, 0, 125.0, 150.0, 0);
+	mouse->setup();
+	add("mouse0", mouse);
+
+	sprites::Sprites *key = new sprites::Sprites();
+	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
+	key->setup();
+	add("key0", key); */
+
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {

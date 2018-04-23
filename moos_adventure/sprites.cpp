@@ -121,7 +121,7 @@ void sprites::Sprites::init(games::GameSetup *newG, std::string newFilename, int
 	h = 0;
 	count = newCount;
 	totalGameTime = newT0;
-	totalAnimationTime = 0;
+	totalAnimationTime = 00;
 	aX = newAX;
 	aY = newAY;
 	vX = newVX;

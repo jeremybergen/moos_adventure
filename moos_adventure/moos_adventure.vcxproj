@@ -136,15 +136,28 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\back0.bmp" />
+    <Image Include="img\box0.bmp" />
     <Image Include="img\ctrl_down0.bmp" />
     <Image Include="img\ctrl_left0.bmp" />
     <Image Include="img\ctrl_pick_drop0.bmp" />
     <Image Include="img\ctrl_right0.bmp" />
     <Image Include="img\ctrl_up0.bmp" />
+    <Image Include="img\key0.bmp" />
+    <Image Include="img\key1.bmp" />
+    <Image Include="img\key2.bmp" />
+    <Image Include="img\key3.bmp" />
+    <Image Include="img\lock0.bmp" />
     <Image Include="img\moo0.bmp" />
+    <Image Include="img\moo1.bmp" />
+    <Image Include="img\moo2.bmp" />
+    <Image Include="img\moo3.bmp" />
     <Image Include="img\moo_50px.bmp" />
     <Image Include="img\moo_static.bmp" />
     <Image Include="img\moo_static.png" />
+    <Image Include="img\mouse0.bmp" />
+    <Image Include="img\mouse1.bmp" />
+    <Image Include="img\mouse2.bmp" />
+    <Image Include="img\mouse3.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animationFrame.h" />
