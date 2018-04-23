@@ -9,7 +9,8 @@
 namespace games {
 	class mooGame: public Game {
 	private: std::vector<sprites::Controls *> controls;
-	
+	private: std::vector<sprites::Controls *> pControls;
+
 	//private: std::unordered_map<std::string, sprites::Sprites *> elements;
 			 
 	private: bool lComplete = true;
@@ -21,6 +22,7 @@ namespace games {
 	//public: std::vector<sprites::Sprites *> getCharacter();
 	public: void eventHandler(SDL_Event e);
 	public: void addControl(std::string filename, int action);
+	public: void addPControl(std::string filename, int action);
 	public: void evalControls();
 	public: void cleanup();
 	};
