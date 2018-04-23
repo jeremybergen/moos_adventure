@@ -26,7 +26,7 @@ void games::mooGame::setup() {
 	add("moo0",moo);
 	character.push_back(moo);
 
-	/* sprites::Sprites *box = new sprites::Sprites();
+	sprites::Sprites *box = new sprites::Sprites();
 	box->init(this, "img\\box", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
 	box->setup();
 	add("box0", box);
@@ -49,7 +49,7 @@ void games::mooGame::setup() {
 	sprites::Sprites *key = new sprites::Sprites();
 	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
 	key->setup();
-	add("key0", key); */
+	add("key0", key);
 
 }
 
