@@ -2,12 +2,32 @@
 #include <fstream>
 #include <string>
 #include <vector>
+//#include <sstream>
+#include <iterator>
+
 #include "mooGame.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
 
 
+template<typename Out>
+void moosplit(const std::string &s, char delim, Out result) {
+	std::stringstream ss(s);
+	std::string item;
+	while (std::getline(ss, item, delim)) {
+		*(result++) = item;
+	}
+}
+
+std::vector<std::string> moosplit(const std::string &s, char delim) {
+	std::vector<std::string> elems;
+	moosplit(s, delim, std::back_inserter(elems));
+	return elems;
+}
+
 void games::mooGame::setup() {
+
+	map();
 	//sprites::Sprites back = new sprites::Sprites();
 	sprites::Sprites *back = new sprites::Sprites();
 	//sprites::Sprites *controls = new sprites::Controls();
@@ -93,23 +113,31 @@ void games::mooGame::evalControls() {
 }
 
 
-/*void games::mooGame::map() // Nick
+void games::mooGame::map() // Nick
 {
-	
 	std::ifstream is("Map.txt");
 	std::string line;
-	std::unordered_map<std::string,int>;
-	while (std::getline("Map.txt", line))
+	std::string tmp;
+	//std::unordered_map<std::string,int>;
+	std::vector<maps::Map> tokens;
+	while (std::getline( is, line))
 	{
-		std::istringstream iss(line);
-		std::string token;// shouldent need token.
+		maps::Map mapLevel;
+
+		std::stringstream iss(line);
+		//iss >> tmp;
+		std::vector<std::string> x = moosplit(line, ',');
+		mapLevel.init(stoi(x[0]), stoi(x[1]), x[2]);
+		tokens.push_back(mapLevel);
+		std::cout << line << std::endl;
+		//std::string token;// shouldent need token.
 	}
 	
 
-	std::cout << line; //Checking data
+	//std::cout << line; //Checking data
 	
 
-}*/
+}
 
 
 void games::mooGame::cleanup() {

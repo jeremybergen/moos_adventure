@@ -4,6 +4,8 @@
 #include "game.h"
 #include "sprites.h"
 #include "controls.h"
+#include "map.h"
+
 
 namespace games {
 	class mooGame: public Game {
@@ -15,7 +17,7 @@ namespace games {
 	public: void eventHandler(SDL_Event e);
 	public: void addControl(std::string filename, int action);
 	public: void evalControls();
-	//public: void map(); // function for map?
+	public: void map(); // function for map?
 	public: void cleanup();
 	};
 }
