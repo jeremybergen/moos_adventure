@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <vector>
 #include "mooGame.h"
 
@@ -89,6 +91,26 @@ void games::mooGame::evalControls() {
 		controls.erase(controls.begin());
 	}
 }
+
+
+/*void games::mooGame::map() // Nick
+{
+	
+	std::ifstream is("Map.txt");
+	std::string line;
+	std::unordered_map<std::string,int>;
+	while (std::getline("Map.txt", line))
+	{
+		std::istringstream iss(line);
+		std::string token;// shouldent need token.
+	}
+	
+
+	std::cout << line; //Checking data
+	
+
+}*/
+
 
 void games::mooGame::cleanup() {
 

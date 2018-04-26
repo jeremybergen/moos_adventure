@@ -15,6 +15,7 @@ namespace games {
 	public: void eventHandler(SDL_Event e);
 	public: void addControl(std::string filename, int action);
 	public: void evalControls();
+	//public: void map(); // function for map?
 	public: void cleanup();
 	};
 }
