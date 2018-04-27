@@ -26,7 +26,25 @@ void maps::Map::init(int mapNum, int bestScore, std::string layout) {
 		std::cout << "x.size() is: " << x.size() << std::endl;
 		squares::Square *squares = new squares::Square(x[0]);
 
+
 		_squares.push_back(squares);
 		x.erase(x.begin());
+
 	}
+	//std::cout << "start of string by char:" << std::endl;
+	for (char& c : layout) {
+		if ((c) = '1')
+		{
+			std::cout << "True ";
+			//true;
+		}
+		else
+		{
+			std::cout << "false ";
+			//false;
+		}
+	}
+	//split(layout, ';');
+	//std::cout << "this is layout, after: " << layout [0]<< layout[1] << std::endl;
+
 }
