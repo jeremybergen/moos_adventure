@@ -73,8 +73,8 @@
     <LibraryPath>C:\vs_dev_lib\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\vs_dev_lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vs_dev_lib\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\SDL2-2.0.8\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDL2-2.0.8\include;$(IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,6 +98,16 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
+    <CustomBuildStep>
+      <Inputs>
+      </Inputs>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,8 +141,10 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameSetup.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
     <ClCompile Include="mooGame.cpp" />
     <ClCompile Include="sprites.cpp" />
+    <ClCompile Include="square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\back0.bmp" />
@@ -164,8 +176,11 @@
     <ClInclude Include="controls.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameSetup.h" />
+    <ClInclude Include="map.h" />
     <ClInclude Include="mooGame.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sprites.h" />
+    <ClInclude Include="squares.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="img\background.xcf" />
@@ -176,6 +191,9 @@
     <None Include="img\pick_drop.xcf" />
     <None Include="img\right.xcf" />
     <None Include="img\up.xcf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="moos_adventure.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
