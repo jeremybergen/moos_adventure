@@ -2,13 +2,13 @@
 #include <fstream>
 #include <string>
 #include <vector>
-//#include <sstream>
 #include <iterator>
 
+#include <string>
 #include "mooGame.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
-
+int no = 0;
 
 template<typename Out>
 void moosplit(const std::string &s, char delim, Out result) {
@@ -38,14 +38,40 @@ void games::mooGame::setup() {
 	back->init(this, "img\\back", 1);
 	//back->init(this, "ctrl_", 2);
 	back->setup();
-	add(back);
+	add("back0",back);
+	//elements.insert({ "back0", back });
 
 	sprites::Sprites *moo = new sprites::Sprites();
-	moo->init(this, "img\\moo", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	moo->init(this, "img\\moo", 4, 0, 0, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
-	add(moo);
+	add("moo0",moo);
 	character.push_back(moo);
-	
+
+	sprites::Sprites *box = new sprites::Sprites();
+	box->init(this, "img\\box", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
+	box->setup();
+	add("box0", box);
+
+	sprites::Sprites *box2 = new sprites::Sprites();
+	box2->init(this, "img\\box", 1, 0, 0, 0, 0, 75.0, 150.0, 0);
+	box2->setup();
+	add("box1", box2);
+
+	sprites::Sprites *box3 = new sprites::Sprites();
+	box3->init(this, "img\\box", 1, 0, 0, 0, 0, 125.0, 150.0, 0);
+	box3->setup();
+	add("box2", box3);
+
+	sprites::Sprites *mouse = new sprites::Sprites();
+	mouse->init(this, "img\\mouse", 4, 0, 0, 0, 0, 125.0, 150.0, 0);
+	mouse->setup();
+	add("mouse0", mouse);
+
+	sprites::Sprites *key = new sprites::Sprites();
+	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
+	key->setup();
+	add("key0", key);
+
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {
@@ -71,44 +97,104 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 		if (e.key.keysym.sym == SDLK_SPACE) {
 			evalControls();
+			no = 0;
+		}
+	}
+	if (e.type == SDL_MOUSEBUTTONDOWN) {
+		//400,414  :  450, 414   :   142, 462   :   93, 462
+		std::cout << e.motion.x << "," << e.motion.y << std::endl;
+		if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 15 && e.motion.x < 65)
+			addControl("img\\ctrl_right", 2);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 93 && e.motion.x < 142)
+			addControl("img\\ctrl_left", 1);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 170&& e.motion.x < 218)
+			addControl("img\\ctrl_up", 3);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 250 && e.motion.x < 300)
+			addControl("img\\ctrl_down", 4);
+		else if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 330 && e.motion.x < 380)
+			addControl("img\\ctrl_pick_drop", 5);
+		if (e.motion.y > 415 && e.motion.y < 460 && e.motion.x > 400 && e.motion.x < 450) {
+			evalControls();
+			no = 0;
 		}
 	}
 }
 
 void games::mooGame::addControl(std::string newFilename, int action) {
-	DEBUG(games::mooGame::character.size());
+	//DEBUG(games::mooGame::character.size());
 	DEBUG("adding control");
+	std::string ncntl = "cntl" + std::to_string(controls.size());
 	sprites::Controls *ctrl = new sprites::Controls();
 	int pY = 50 + 25 * controls.size();
 	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 505.0, pY, 0, action);
 	ctrl->setup();
-	add(ctrl);
+	add(ncntl, ctrl);
+	//add(ctrl);
 	controls.push_back(ctrl);
+	//elements.insert({ ncntl, ctrl });
+}
+
+void games::mooGame::addPControl(std::string newFilename, int action) {
+	//DEBUG(games::mooGame::character.size());
+	DEBUG("adding pControl");
+	std::string ncntl = "pCntl" + std::to_string(pControls.size());
+	sprites::Controls *ctrl = new sprites::Controls();
+	int pY = 50 + 25 * pControls.size();
+	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 580.0, pY, 0, action);
+	ctrl->setup();
+	add(ncntl, ctrl);
+	//add(ctrl);
+	pControls.push_back(ctrl);
+	//elements.insert({ ncntl, ctrl });
+}
+
+
+std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
+	return character;
 }
 
 void games::mooGame::evalControls() {
-	int i = 0;
+	int u = 0;
+	if (pControls.size() != 0)
+		while (pControls.size() > 0) {
+			pControls.erase(pControls.begin());
+			games::Game::remove("pCntl" + std::to_string(u));
+			u++;
+		}
+
 	while (controls.size() > 0) {
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
-			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy());
+			character[0]->moveCharacter(character[0]->getPx() - 50, character[0]->getPy(), character[0], no);
+			addPControl("img\\ctrl_left", 1);
+			no++;
 			break;
 		case 2:
-			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy());
+			character[0]->moveCharacter(character[0]->getPx() + 50, character[0]->getPy(), character[0], no);
+			addPControl("img\\ctrl_right", 2);
+			no++;
 			break;
 		case 3:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() - 50, character[0], no);
+			addPControl("img\\ctrl_up", 3);
+			no++;
 			break;
 		case 4:
-			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50);
+			character[0]->moveCharacter(character[0]->getPx(), character[0]->getPy() + 50, character[0], no);
+			addPControl("img\\ctrl_down", 4);
+			no++;
 			break;
 		case 5:
 			break;
 		default:
 			break;
 		}
+		std::cout << "" << std::endl;
 		controls.erase(controls.begin());
+		//elements.erase("cntl" + no);
+		games::Game::remove("cntl" + std::to_string((no - 1)));
+		//no--;
 	}
 }
 

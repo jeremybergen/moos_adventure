@@ -1,13 +1,17 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 #include "gameSetup.h"
+//#include "game.h"
 #include "animationFrame.h"
+//#include "mooGame.h"
 
 namespace sprites {
 	class Sprites {
 	protected: games::GameSetup *g;
+	//protected: games::mooGame *character;
 	protected: std::string filename;
 	protected: int w, h;
 	protected: float aX, aY, vX, vY, pX, pY, t0;
@@ -18,7 +22,8 @@ namespace sprites {
 
 	public: void add(animation::animationFrame af);
 	public: virtual void loop(float dt);
-	public: virtual void moveCharacter(float newPX, float newPY);
+	public: virtual void moveCharacter(float newPX, float newPY, sprites::Sprites *character, int size);
+	public: virtual void updateRender();
 	public: virtual void cleanup();
 	public: float getPx();
 	public: float getPy();

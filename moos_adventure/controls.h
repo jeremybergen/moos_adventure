@@ -14,6 +14,7 @@ namespace sprites {
 
 
 	public: void init(games::GameSetup *g, std::string newFilename, int newCount, float newAX = 0.0, float newAY = 0.0, float newVX = 0.0, float newVY = 0.0, float newPX = 505.0, float newPY = 50.0, int newT0 = 0, int newAction = 0);
+	public: void updateRender();
 	//public: void setAction(std::string newAction);
 	public: int getAction();
 
