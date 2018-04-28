@@ -7,9 +7,9 @@
 
 namespace games {
 	class Game: public GameSetup {
-	private: std::vector<sprites::Sprites *> sprites;
+	//private: std::vector<sprites::Sprites *> sprites;
 	//private: std::unordered_map<std::string, int> map; //Nick
-	public: void add(sprites::Sprites *s);
+	//public: void add(sprites::Sprites *s);
 
 	//private: std::vector<sprites::Sprites *> sprites;
 	private: std::unordered_map<std::string, sprites::Sprites *> sprites;
