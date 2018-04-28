@@ -117,6 +117,15 @@ void games::mooGame::eventHandler(SDL_Event e) {
 			evalControls();
 			no = 0;
 		}
+
+		int square = -1;
+		if (e.motion.y > 45 && e.motion.y < 375 && e.motion.x > 500 && e.motion.x < 560) {
+			square = (e.motion.y - 50) / 25;
+			if (square < controls.size()) {
+				controls.erase(controls.begin() + square);
+				games::Game::remove("cntl" + std::to_string((square)));
+			}
+		}
 	}
 }
 
