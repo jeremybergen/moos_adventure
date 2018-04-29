@@ -37,6 +37,11 @@ void sprites::Sprites::updateRender() {
 	SDL_RenderPresent(g->getRenderer());
 }
 
+void sprites::Sprites::update() {
+	g->loop(0);
+	SDL_RenderPresent(g->getRenderer());
+}
+
 void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, int no){
 	int speed = 5;
 	//std::string cntl = "cntl" + std::to_string(no);

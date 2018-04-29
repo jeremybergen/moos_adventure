@@ -10,6 +10,11 @@ void games::Game::add(std::string key, sprites::Sprites *s) {
 	//sprites.push_back(s);
 }
 
+void games::Game::swapE(std::string ocnrl, std::string ncnrl) {
+	sprites.erase(ocnrl);
+	sprites.insert({ ocnrl, sprites.at(ncnrl) });
+}
+
 /*void games::Game::pAdd(std::string key, sprites::Sprites *s) {
 	//DEBUG(s);
 

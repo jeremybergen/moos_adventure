@@ -119,11 +119,19 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 
 		int square = -1;
+		int temp;
 		if (e.motion.y > 45 && e.motion.y < 375 && e.motion.x > 500 && e.motion.x < 560) {
-			square = (e.motion.y - 50) / 25;
+			square = (e.motion.y - 45) / 25;
+			std::cout << "Square: " << square << std::endl;
+			controls.erase(controls.begin() + square);
 			if (square < controls.size()) {
-				controls.erase(controls.begin() + square);
-				games::Game::remove("cntl" + std::to_string((square)));
+				for (int i = square; i < controls.size(); i++) {
+					swapE("cntl" + std::to_string(i), "cntl" + std::to_string(i + 1));
+					temp = i;
+				}
+				games::Game::remove("cntl" + std::to_string((temp + 1)));
+				no--;
+				character[0]->update();
 			}
 		}
 	}
