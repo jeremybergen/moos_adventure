@@ -108,6 +108,14 @@ float sprites::Sprites::getPy() {
 	return pY;
 }
 
+void sprites::Sprites::setPx(int val) {
+	pX = val;
+}
+
+void sprites::Sprites::setPy(int val) {
+	pY = val;
+}
+
 void sprites::Sprites::cleanup() {
 	for (unsigned i = 0; i < frames.size(); i++){
 		frames[i].cleanup();

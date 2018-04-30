@@ -119,18 +119,22 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		}
 
 		int square = -1;
-		int temp;
+		//int temp;
 		if (e.motion.y > 45 && e.motion.y < 375 && e.motion.x > 500 && e.motion.x < 560) {
 			square = (e.motion.y - 45) / 25;
 			std::cout << "Square: " << square << std::endl;
-			controls.erase(controls.begin() + square);
 			if (square < controls.size()) {
-				for (int i = square; i < controls.size(); i++) {
-					swapE("cntl" + std::to_string(i), "cntl" + std::to_string(i + 1));
-					temp = i;
+				controls.erase(controls.begin() + square);
+				std::cout << "ControlSize: " << controls.size() << std::endl;
+				if (square != controls.size()) {
+					for (int i = square; i < controls.size(); i++) {
+						swapE("cntl" + std::to_string(i), "cntl" + std::to_string(i + 1));
+						controls.at(i)->setPy(50 + 25 * i);
+						//temp = i;
+					}
 				}
-				games::Game::remove("cntl" + std::to_string((temp + 1)));
-				no--;
+				games::Game::remove("cntl" + std::to_string((controls.size())));
+				//no--;
 				character[0]->update();
 			}
 		}
@@ -213,6 +217,7 @@ void games::mooGame::evalControls() {
 		games::Game::remove("cntl" + std::to_string((no - 1)));
 		//no--;
 	}
+	std::cout << "controls: " << controls.size() << std::endl;
 }
 
 

@@ -28,6 +28,8 @@ namespace sprites {
 	public: virtual void cleanup();
 	public: float getPx();
 	public: float getPy();
+	public: void setPx(int val);
+	public: void setPy(int val);
 	public: bool isDone();
 	public: void init(games::GameSetup *newG, std::string newFilename, int newCount = 1, float newAX=0.0, float newAY=0.0, float newVX=0.0, float newVY=0.0, float newPX=0.0, float newPY=0.0, int newT0=0);
 	public: virtual void setup();
