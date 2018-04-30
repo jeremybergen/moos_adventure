@@ -147,9 +147,28 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 	std::string ncntl = "cntl" + std::to_string(controls.size());
 	sprites::Controls *ctrl = new sprites::Controls();
 	int pY = 50 + 25 * controls.size();
-	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 505.0, pY, 0, action);
+	int iPx = 0;
+	
+	if (newFilename == "img\\ctrl_right") {
+		iPx = 15;
+	}
+	if (newFilename == "img\\ctrl_left") {
+		iPx = 92;
+	}
+	if (newFilename == "img\\ctrl_up") {
+		iPx = 170;
+	}
+	if (newFilename == "img\\ctrl_down") {
+		iPx = 250;
+	}
+	if (newFilename == "img\\ctrl_pick_drop") {
+		iPx = 330;
+	}
+
+	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, iPx, 415, 0, action);
 	ctrl->setup();
 	add(ncntl, ctrl);
+	ctrl->move(25, 400, pY);
 	//add(ctrl);
 	controls.push_back(ctrl);
 	//elements.insert({ ncntl, ctrl });

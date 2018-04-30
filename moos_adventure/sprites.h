@@ -30,6 +30,9 @@ namespace sprites {
 	public: float getPy();
 	public: void setPx(int val);
 	public: void setPy(int val);
+	public: void setVx(int val);
+	public: void setVy(int val);
+	public: virtual void move(int x, int y, int yPos);
 	public: bool isDone();
 	public: void init(games::GameSetup *newG, std::string newFilename, int newCount = 1, float newAX=0.0, float newAY=0.0, float newVX=0.0, float newVY=0.0, float newPX=0.0, float newPY=0.0, int newT0=0);
 	public: virtual void setup();
