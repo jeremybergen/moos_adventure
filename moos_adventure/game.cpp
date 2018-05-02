@@ -105,6 +105,7 @@ void games::Game::updateSprites(float dt) {
 		it->second->render();
 		it++;
 	}
+	Message->render();
 
 	/*while (pIt != pSprites.end())
 	{

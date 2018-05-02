@@ -71,7 +71,6 @@ void games::mooGame::setup() {
 	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
 	key->setup();
 	add("key0", key);
-
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {

@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <SDL.h>
+#include <SDL_ttf.h>
+
 #undef main
 
 namespace games {
@@ -8,7 +10,15 @@ namespace games {
 	private: int maxX;
 	private: int maxY;
 	private: SDL_Window *window;
+	private: SDL_Color White;
+	private: SDL_Surface * surfaceMessage;
+	private: SDL_Texture * Message;
+	private: SDL_Rect Message_rect;
+	private: TTF_Font * Sans;
 	private: SDL_Renderer *renderer;
+	private: TTF_Font * gFont;
+	private: int mWidth;
+	private: int mHeight;
 	private: bool done;
 	private: bool dead;
 
