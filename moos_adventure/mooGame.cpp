@@ -71,7 +71,6 @@ void games::mooGame::setup() {
 	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
 	key->setup();
 	add("key0", key);
-
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {
@@ -195,6 +194,10 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 
 void games::mooGame::evalControls() {
 	int u = 0;
+
+	//Replace following line with the one after it, after maps is initilaized
+	//games::GameSetup::setScore(controls.size() - maps.getBScore());
+	games::GameSetup::setScore(controls.size());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());

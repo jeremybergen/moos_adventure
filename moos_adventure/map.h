@@ -11,5 +11,6 @@ namespace maps {
 
 
 	public: void init(int mapNum, int bestScore, std::string layout);
+	public: int getBScore();
 	};
 }
