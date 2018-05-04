@@ -48,3 +48,6 @@ void maps::Map::init(int mapNum, int bestScore, std::string layout) {
 	//std::cout << "this is layout, after: " << layout [0]<< layout[1] << std::endl;
 
 }
+int maps::Map::getBScore() {
+	return _bestScore;
+}

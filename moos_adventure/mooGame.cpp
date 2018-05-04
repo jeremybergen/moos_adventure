@@ -194,6 +194,10 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 
 void games::mooGame::evalControls() {
 	int u = 0;
+
+	//Replace following line with the one after it, after maps is initilaized
+	//games::GameSetup::setScore(controls.size() - maps.getBScore());
+	games::GameSetup::setScore(controls.size());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
