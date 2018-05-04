@@ -77,6 +77,45 @@
     <Image Include="img\moo0.bmp">
       <Filter>img</Filter>
     </Image>
+    <Image Include="img\lock0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\key3.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\key2.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\key1.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\key0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\mouse3.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\mouse2.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\mouse1.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\mouse0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\box0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo3.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo2.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\moo1.bmp">
+      <Filter>img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameSetup.h">

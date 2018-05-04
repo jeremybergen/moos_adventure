@@ -2,6 +2,8 @@
 #include <iostream>
 #include <sstream>
 #include "sprites.h"
+//#include "mooGame.h"
+//#include "gameSetup.h"
 
 #define DEBUG(s) std::cerr << s << std::endl;
 
@@ -12,17 +14,85 @@ void sprites::Sprites::add(animation::animationFrame af) {
 }
 
 void sprites::Sprites::loop(float dt) {
-	vY = vY + aY * dt;
-	vX = vX + aX * dt;
-	//pY = pY + pY * dt;
-	//pX = pX + pX * dt;
+	//vY = 0;
+	pY = pY + vY * dt;
+	//vX = 0;
+	pX = pX + vX * dt;
 	totalGameTime += (int)(dt*1000.0);
+
+	//vY = vY + aY * dt;
+	//vX = vX + aX * dt;
 }
 
-void sprites::Sprites::moveCharacter(float newPX, float newPY) {
-	pX = newPX;
-	pY = newPY;
+/* void sprites::Sprites::updateSprites() {
+	std::vector<sprites::Sprites *> temp;
+	//temp = games::mooGame::getCharacter();
+	temp = character->getCharacter();
+	DEBUG("-----temp size is:");
+	DEBUG(temp.size());
+	DEBUG("-----end temp size");
+} */
 
+void sprites::Sprites::updateRender() {
+	SDL_RenderPresent(g->getRenderer());
+}
+
+void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, int no){
+	int speed = 5;
+	//std::string cntl = "cntl" + std::to_string(no);
+
+	if (pX < newPX) {
+		while (pX < newPX) {
+			vX = speed;
+			pX = pX + vX * 0.01;
+			
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
+			
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pX > newPX) {
+		while (pX > newPX) {
+			vX = speed;
+			pX = pX - vX * 0.01;			
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
+
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pY < newPY) {
+		while (pY < newPY) {
+			vY = speed;
+			pY = pY + vY * 0.01;
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
+
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+	if (pY > newPY) {
+		while (pY > newPY) {
+			vY = speed;
+			pY = pY - vY * 0.01;
+			//elements.at("back0")->render();
+			//elements.at(cntl)->render();
+			g->loop(0);
+			//character->render();
+
+			SDL_RenderPresent(g->getRenderer());
+		}
+	}
+
+	vX = 0;
+	vY = 0;
 }
 
 float sprites::Sprites::getPx() {
@@ -51,7 +121,7 @@ void sprites::Sprites::init(games::GameSetup *newG, std::string newFilename, int
 	h = 0;
 	count = newCount;
 	totalGameTime = newT0;
-	totalAnimationTime = 0;
+	totalAnimationTime = 00;
 	aX = newAX;
 	aY = newAY;
 	vX = newVX;
@@ -65,8 +135,8 @@ void sprites::Sprites::setup() {
 		animation::animationFrame af;
 		std::stringstream sstring;
 		//std::cout << "filename is: " << filename << std::endl;
-		DEBUG("filename is: ");
-		DEBUG(filename);
+		//DEBUG("filename is: ");
+		//DEBUG(filename);
 		sstring << filename << i << ".bmp";
 		af.setup(g, sstring.str().c_str(), 100);
 		add(af);

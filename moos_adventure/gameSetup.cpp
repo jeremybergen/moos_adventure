@@ -15,8 +15,12 @@ void games::GameSetup::setDone(bool value) {
 	done = value;
 }
 
+SDL_Window *games::GameSetup::getWindow() {
+	return window;
+}
+
 SDL_Renderer *games::GameSetup::getRenderer() {
-	return games::GameSetup::renderer;
+	return renderer;
 }
 
 //void games::GameSetup::init(std::string WindowName = "Moo's Adventure", int newMaxX = 640, int newMaxY = 480) {
@@ -44,10 +48,12 @@ void games::GameSetup::run() {
 	setup();
 	float last = SDL_GetTicks();
 	bool dead = false;
+	
 	while (!dead && !done) {
 		SDL_Event event;
 		float dt = ((float)SDL_GetTicks() - last) / 1000.0;
 		last = SDL_GetTicks();
+		
 		loop(dt);
 		SDL_RenderPresent(renderer);
 		if (SDL_PollEvent(&event)) {
