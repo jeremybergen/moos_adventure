@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <sstream>
+#include <SDL.h>
 
 namespace squares {
 	class Square {
