@@ -14,5 +14,6 @@ namespace squares {
 	private: bool _pickup;
 
 	public: Square(std::string square);
+	//public: Maping(std::string square);
 	};
 }

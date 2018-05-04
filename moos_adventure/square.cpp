@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
-#include "sprites.h"
+#include "sprites.h" // added... need??
 
 template<typename Out>
 void squaresplit(const std::string &s, char delim, Out result) {
@@ -30,7 +30,7 @@ squares::Square::Square(std::string square) {
 	_x = stoi(x[0]);
 	_y = stoi(x[1]);
 
-	for (char& c : square ) {
+	for (char& c : square) {
 		if ((c) = '1')
 		{
 		std::cout << "True ";
@@ -42,19 +42,28 @@ squares::Square::Square(std::string square) {
 		false;
 		}
 
-		
 		SDL_Renderer* renderer = NULL;// for rendering.
 		SDL_bool done = SDL_FALSE;
 
-		sprites::Sprites::setup(box0.bmp);
+		//sprites::Sprites::render(g, _x, _y); // _x: x pos and _y: y pos. use to render box0.bmp?
 
 
+		/*
 		if (renderer) {
 		SDL_DestroyRenderer(renderer);
 		}
+		*/
+		
 
 		SDL_Quit();
 		//return 0;
 		
 }
 
+	/*
+void Mapping(std::string)
+{
+
+
+}
+*/
