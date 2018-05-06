@@ -39,9 +39,11 @@ void games::mooGame::setup() {
 	//back->init(this, "ctrl_", 2);
 	back->setup();
 	add("back0",back);
+
+	addToGame(2);
 	//elements.insert({ "back0", back });
 
-	sprites::Sprites *moo = new sprites::Sprites();
+	/* sprites::Sprites *moo = new sprites::Sprites();
 	moo->init(this, "img\\moo", 4, 0, 0, 0, 0, 25.0, 150.0, 0);
 	moo->setup();
 	add("moo0",moo);
@@ -71,6 +73,7 @@ void games::mooGame::setup() {
 	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
 	key->setup();
 	add("key0", key);
+	*/
 
 }
 
@@ -199,30 +202,65 @@ void games::mooGame::evalControls() {
 }
 
 
+
+
 void games::mooGame::map() // Nick
 {
 	std::ifstream is("Map.txt");
 	std::string line;
 	std::string tmp;
 	//std::unordered_map<std::string,int>;
-	std::vector<maps::Map> tokens;
 	while (std::getline( is, line))
 	{
-		maps::Map mapLevel;
+		if (line[0] != '#'){
+			maps::Map mapLevel;
 
-		std::stringstream iss(line);
-		//iss >> tmp;
-		std::vector<std::string> x = moosplit(line, ',');
-		mapLevel.init(stoi(x[0]), stoi(x[1]), x[2]);
-		tokens.push_back(mapLevel);
-		std::cout << line << std::endl;
-		//std::string token;// shouldent need token.
+			std::stringstream iss(line);
+			//iss >> tmp;
+			std::vector<std::string> x = moosplit(line, ',');
+			mapLevel.build(stoi(x[0]), stoi(x[1]), x[2]);
+			tokens.push_back(mapLevel);
+			std::cout << line << std::endl;
+			//std::string token;// shouldent need token.
+		}
+
 	}
 	
 
 	//std::cout << line; //Checking data
 	
 
+}
+
+void games::mooGame::addToGame(int level)
+{
+	maps::Map selectedLevel = tokens[level - 1];
+	
+	std::unordered_map<std::string, squares::Square *>::iterator it = selectedLevel.squareMap.begin();
+
+	while (it != selectedLevel.squareMap.end())
+	{
+		DEBUG(it->first);
+		sprites::Sprites *square = new sprites::Sprites();
+		square->init(this, "img\\box", 1, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+		square->setup();
+		add(it->first, square);
+
+		if (it == selectedLevel.squareMap.begin()) {
+			sprites::Sprites *moo = new sprites::Sprites();
+			moo->init(this, "img\\moo", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			moo->setup();
+			add("moo0", moo);
+			character.push_back(moo);
+		}
+		if (it->second->getGoal() == true) {
+			sprites::Sprites *mouse = new sprites::Sprites();
+			mouse->init(this, "img\\mouse", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			mouse->setup();
+			add("mouse0", mouse);
+		}
+		it++;
+	}
 }
 
 
