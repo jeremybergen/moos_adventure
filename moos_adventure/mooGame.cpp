@@ -209,10 +209,10 @@ void games::mooGame::evalControls() {
 			games::Game::remove("pCntl" + std::to_string(u));
 			u++;
 		}
-	std::unordered_map<std::string, squares::Square *>::iterator it = selectedLevel.squareMap.begin();
+	std::vector<std::pair<std::string, squares::Square*>>::iterator it = selectedLevel.squareMap.begin();
 
 	while (controls.size() > 0) {
-		while (it->second->getX() != moo->getPx() || it->second->getY() != moo->getPy()) it++;
+		while (it->second->getX() != moo->getPx() || it->second->getY() != moo->getPy()) { it++; }
 		DEBUG(controls[0]->getAction());
 		switch (controls[0]->getAction()) {
 		case 1:
@@ -240,9 +240,15 @@ void games::mooGame::evalControls() {
 				//DEBUG("playing gMeow");
 				Mix_PlayChannel(-1, gMeow, 0);
 				games::Game::remove("mouse0");
-				addPControl("img\\ctrl_pick_drop", 5);
-				no++;
 			}
+			else if (it->second->getGKey() == true) {
+				hasGKey = true;
+				games::Game::remove("gKey0");
+				games::Game::remove("gLock0");
+			}
+			addPControl("img\\ctrl_pick_drop", 5);
+			no++;
+
 			break;
 		default:
 			break;
@@ -292,7 +298,8 @@ void games::mooGame::addToGame(int level)
 {
 	maps::Map selectedLevel = tokens[level - 1];
 	
-	std::unordered_map<std::string, squares::Square *>::iterator it = selectedLevel.squareMap.begin();
+	//std::unordered_map<std::string, squares::Square *>::iterator it = selectedLevel.squareMap.begin();
+	std::vector<std::pair<std::string, squares::Square*>>::iterator it = selectedLevel.squareMap.begin();
 
 	while (it != selectedLevel.squareMap.end())
 	{
@@ -315,6 +322,18 @@ void games::mooGame::addToGame(int level)
 			mouse->setup();
 			add("mouse0", mouse);
 		}
+		if (it->second->getGKey() == true) {
+			sprites::Sprites *gKey = new sprites::Sprites();
+			gKey->init(this, "img\\gkey", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			gKey->setup();
+			add("gKey0", gKey);
+		}
+		if (it->second->getGLock() == true) {
+			sprites::Sprites *gLock = new sprites::Sprites();
+			gLock->init(this, "img\\glock", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			gLock->setup();
+			add("gLock0", gLock);
+		}
 		it++;
 	}
 }
@@ -332,8 +351,8 @@ void games::mooGame::setupGame() {
 	games::Game::remove("splash0");
 	splashScreen = false;
 	Mix_HaltMusic();
-	addToGame(1);
-	curLevel = 1;
+	addToGame(3);
+	curLevel = 3;
 }
 
 void games::mooGame::levelSelection() {
@@ -362,6 +381,7 @@ void games::mooGame::displayCredits(){
 void games::mooGame::displaySplash() {
 	splashScreen = true;
 	creditScreen = false;
+	levelSelect = false;
 	sprites::Sprites *splash = new sprites::Sprites();
 	splash->init(this, "img\\splash", 1);
 	splash->setup();

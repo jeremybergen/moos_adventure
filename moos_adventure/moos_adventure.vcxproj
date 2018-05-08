@@ -154,6 +154,11 @@
     <Image Include="img\ctrl_pick_drop0.bmp" />
     <Image Include="img\ctrl_right0.bmp" />
     <Image Include="img\ctrl_up0.bmp" />
+    <Image Include="img\gkey0.bmp" />
+    <Image Include="img\gkey1.bmp" />
+    <Image Include="img\gkey2.bmp" />
+    <Image Include="img\gkey3.bmp" />
+    <Image Include="img\glock0.bmp" />
     <Image Include="img\key0.bmp" />
     <Image Include="img\key1.bmp" />
     <Image Include="img\key2.bmp" />

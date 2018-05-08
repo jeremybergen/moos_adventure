@@ -31,7 +31,8 @@ void maps::Map::build(int mapNum, int bestScore, std::string layout) {
 		squares::Square *tmpSquare = new squares::Square();
 		tmpSquare->init(square);
 		std::string tmpString = std::to_string(tmpSquare->getX()) + ":" + std::to_string(tmpSquare->getY()) + ":" + "square" + std::to_string(idxSquare);
-		squareMap.insert({ tmpString, tmpSquare });
+		//squareMap.insert({ tmpString, tmpSquare });
+		squareMap.push_back(std::make_pair(tmpString, tmpSquare));
 		idxSquare++;
 	}
 }

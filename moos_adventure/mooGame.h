@@ -19,6 +19,8 @@ namespace games {
 	private: int curLevel = 0;
 	private: sprites::Sprites *moo = new sprites::Sprites();
 
+	private: bool hasGKey = false;
+
 
 
 	//private: std::unordered_map<std::string, sprites::Sprites *> elements;
