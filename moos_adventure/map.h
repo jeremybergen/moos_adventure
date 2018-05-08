@@ -13,7 +13,8 @@ namespace maps {
 	public: std::unordered_map<std::string, squares::Square* > squareMap;
 
 
+
 	public: void build(int mapNum, int bestScore, std::string layout);
-	//public: void draw();
+	public: int getBScore();
 	};
 }

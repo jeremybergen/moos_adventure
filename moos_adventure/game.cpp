@@ -10,6 +10,11 @@ void games::Game::add(std::string key, sprites::Sprites *s) {
 	//sprites.push_back(s);
 }
 
+void games::Game::swapE(std::string ocnrl, std::string ncnrl) {
+	sprites.erase(ocnrl);
+	sprites.insert({ ocnrl, sprites.at(ncnrl) });
+}
+
 /*void games::Game::pAdd(std::string key, sprites::Sprites *s) {
 	//DEBUG(s);
 
@@ -100,6 +105,8 @@ void games::Game::updateSprites(float dt) {
 		it->second->render();
 		it++;
 	}
+	SDL_RenderCopy(renderer, Message, NULL, &Message_rect); //you put the renderer's name first, the Message, the crop size(you can ignore this if you don't want to dabble with cropping), and the rect which is the size and coordinate of your texture
+
 
 	/*while (pIt != pSprites.end())
 	{

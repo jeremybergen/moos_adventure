@@ -41,40 +41,6 @@ void games::mooGame::setup() {
 	add("back0",back);
 
 	addToGame(2);
-	//elements.insert({ "back0", back });
-
-	/* sprites::Sprites *moo = new sprites::Sprites();
-	moo->init(this, "img\\moo", 4, 0, 0, 0, 0, 25.0, 150.0, 0);
-	moo->setup();
-	add("moo0",moo);
-	character.push_back(moo);
-
-	sprites::Sprites *box = new sprites::Sprites();
-	box->init(this, "img\\box", 1, 0, 0, 0, 0, 25.0, 150.0, 0);
-	box->setup();
-	add("box0", box);
-
-	sprites::Sprites *box2 = new sprites::Sprites();
-	box2->init(this, "img\\box", 1, 0, 0, 0, 0, 75.0, 150.0, 0);
-	box2->setup();
-	add("box1", box2);
-
-	sprites::Sprites *box3 = new sprites::Sprites();
-	box3->init(this, "img\\box", 1, 0, 0, 0, 0, 125.0, 150.0, 0);
-	box3->setup();
-	add("box2", box3);
-
-	sprites::Sprites *mouse = new sprites::Sprites();
-	mouse->init(this, "img\\mouse", 4, 0, 0, 0, 0, 125.0, 150.0, 0);
-	mouse->setup();
-	add("mouse0", mouse);
-
-	sprites::Sprites *key = new sprites::Sprites();
-	key->init(this, "img\\key", 4, 0, 0, 0, 0, 75.0, 150.0, 0);
-	key->setup();
-	add("key0", key);
-	*/
-
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {
@@ -120,6 +86,27 @@ void games::mooGame::eventHandler(SDL_Event e) {
 			evalControls();
 			no = 0;
 		}
+
+		int square = -1;
+		//int temp;
+		if (e.motion.y > 45 && e.motion.y < 375 && e.motion.x > 500 && e.motion.x < 560) {
+			square = (e.motion.y - 45) / 25;
+			std::cout << "Square: " << square << std::endl;
+			if (square < controls.size()) {
+				controls.erase(controls.begin() + square);
+				std::cout << "ControlSize: " << controls.size() << std::endl;
+				if (square != controls.size()) {
+					for (int i = square; i < controls.size(); i++) {
+						swapE("cntl" + std::to_string(i), "cntl" + std::to_string(i + 1));
+						controls.at(i)->setPy(50 + 25 * i);
+						//temp = i;
+					}
+				}
+				games::Game::remove("cntl" + std::to_string((controls.size())));
+				//no--;
+				character[0]->update();
+			}
+		}
 	}
 }
 
@@ -129,9 +116,28 @@ void games::mooGame::addControl(std::string newFilename, int action) {
 	std::string ncntl = "cntl" + std::to_string(controls.size());
 	sprites::Controls *ctrl = new sprites::Controls();
 	int pY = 50 + 25 * controls.size();
-	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, 505.0, pY, 0, action);
+	int iPx = 0;
+	
+	if (newFilename == "img\\ctrl_right") {
+		iPx = 15;
+	}
+	if (newFilename == "img\\ctrl_left") {
+		iPx = 92;
+	}
+	if (newFilename == "img\\ctrl_up") {
+		iPx = 170;
+	}
+	if (newFilename == "img\\ctrl_down") {
+		iPx = 250;
+	}
+	if (newFilename == "img\\ctrl_pick_drop") {
+		iPx = 330;
+	}
+
+	ctrl->init(this, newFilename, 1, 0, 0, 0, 0, iPx, 415, 0, action);
 	ctrl->setup();
 	add(ncntl, ctrl);
+	ctrl->move(25, 400, pY);
 	//add(ctrl);
 	controls.push_back(ctrl);
 	//elements.insert({ ncntl, ctrl });
@@ -158,6 +164,10 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 
 void games::mooGame::evalControls() {
 	int u = 0;
+
+	//Replace following line with the one after it, after maps is initilaized
+	//games::GameSetup::setScore(controls.size() - maps.getBScore());
+	games::GameSetup::setScore(controls.size());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
@@ -199,6 +209,7 @@ void games::mooGame::evalControls() {
 		games::Game::remove("cntl" + std::to_string((no - 1)));
 		//no--;
 	}
+	std::cout << "controls: " << controls.size() << std::endl;
 }
 
 

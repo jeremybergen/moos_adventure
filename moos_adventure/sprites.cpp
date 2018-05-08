@@ -37,6 +37,11 @@ void sprites::Sprites::updateRender() {
 	SDL_RenderPresent(g->getRenderer());
 }
 
+void sprites::Sprites::update() {
+	g->loop(0);
+	SDL_RenderPresent(g->getRenderer());
+}
+
 void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *character, int no){
 	int speed = 5;
 	//std::string cntl = "cntl" + std::to_string(no);
@@ -101,6 +106,47 @@ float sprites::Sprites::getPx() {
 
 float sprites::Sprites::getPy() {
 	return pY;
+}
+
+void sprites::Sprites::setPx(int val) {
+	pX = val;
+}
+
+void sprites::Sprites::setPy(int val) {
+	pY = val;
+}
+
+void sprites::Sprites::setVx(int val) {
+	vX = val;
+}
+
+void sprites::Sprites::setVy(int val) {
+	vY = val;
+}
+
+void sprites::Sprites::move(int x, int y, int yPos) {
+	int speed = 5;
+	vY = ((yPos - pY) / speed);
+	vX = (505.0 - pX) / speed;
+	while (pX < 505.0 || pY > yPos) {
+		if (pX < 505)
+		{
+			pX = pX + vX * 0.01;
+		}
+		else
+			vX = 0;
+
+		if (pY > yPos)
+		{
+			pY = pY + vY * 0.01;
+		}
+		else
+			vY = 0;
+		g->loop(0);
+		SDL_RenderPresent(g->getRenderer());
+	}
+	vX = 0;
+	vY = 0;
 }
 
 void sprites::Sprites::cleanup() {

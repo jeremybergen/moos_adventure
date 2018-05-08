@@ -16,6 +16,7 @@ namespace games {
 	//private: std::unordered_map<std::string, sprites::Sprites *> pSprites;
 	//private: std::vector<sprites::Sprites *> controls;
 	public: void add(std::string key, sprites::Sprites *s);
+	public: void swapE(std::string key, std::string nkey);
 	//public: void pAdd(std::string key, sprites::Sprites *s);
 	public: void updateSprites(float dt);
 	//public: void addCtrl(sprites::Sprites *s);
