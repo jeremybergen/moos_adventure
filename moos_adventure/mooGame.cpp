@@ -90,8 +90,10 @@ void games::mooGame::eventHandler(SDL_Event e) {
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
 		if (splashScreen) {
 			std::cout << e.motion.x << "," << e.motion.y << std::endl;
-			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470)
+			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470) {
+				games::GameSetup::scoreSetup();
 				setupGame();
+			}
 			else if (e.motion.y > 268 && e.motion.y < 318 && e.motion.x > 170 && e.motion.x < 470)
 				levelSelection();
 			else if (e.motion.y > 339 && e.motion.y < 389 && e.motion.x > 170 && e.motion.x < 470)
@@ -202,7 +204,9 @@ void games::mooGame::evalControls() {
 
 	//Replace following line with the one after it, after maps is initilaized
 	//games::GameSetup::setScore(controls.size() - maps.getBScore());
-	games::GameSetup::setScore(controls.size());
+	std::cout << "Best Score: " << selectedLevel.getBScore() << std::endl << "Current # controls: " << controls.size() << std::endl;
+	int score = controls.size() - selectedLevel.getBScore();
+	//games::GameSetup::setSc ore(controls.size() - tokens[curLevel].getBScore());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
@@ -260,6 +264,8 @@ void games::mooGame::evalControls() {
 		//no--;
 		it = selectedLevel.squareMap.begin();
 	}
+	//if (level == complete)
+		games::GameSetup::setScore(score);
 	std::cout << "controls: " << controls.size() << std::endl;
 }
 
