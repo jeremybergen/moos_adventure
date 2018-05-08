@@ -95,7 +95,8 @@ void sprites::Sprites::moveCharacter(float newPX, float newPY, Sprites *characte
 			SDL_RenderPresent(g->getRenderer());
 		}
 	}
-
+	pY = newPY;
+	pX = newPX;
 	vX = 0;
 	vY = 0;
 }

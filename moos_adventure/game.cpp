@@ -27,15 +27,15 @@ void games::Game::addCtrl(sprites::Sprites *s) {
 } */
 
 void games::Game::remove(std::string key) {
-	std::unordered_map<std::string, sprites::Sprites *>::iterator it = sprites.begin();
+	//std::unordered_map<std::string, sprites::Sprites *>::iterator it = sprites.begin();
 
 	// Iterate over the map using iterator
 	sprites.erase(key);
-	while (it != sprites.end())
-	{
-		DEBUG(it->first);
-		it++;
-	}
+	//while (it != sprites.end())
+	//{
+		//DEBUG(it->first);
+		//it++;
+	//}
 
 	//controls.erase(controls.begin());
 }

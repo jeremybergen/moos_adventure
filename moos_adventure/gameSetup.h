@@ -2,6 +2,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 #undef main
 
@@ -22,6 +23,9 @@ namespace games {
 	private: int mHeight;
 	private: bool done;
 	private: bool dead;
+	protected: Mix_Music * gMusic = NULL;
+	protected: Mix_Chunk * gMeow = NULL;
+	protected: Mix_Chunk * gCry = NULL;
 
 	public: int getMaxX();
 	public: int getMaxY();

@@ -13,6 +13,12 @@ namespace games {
 	private: std::vector<sprites::Controls *> controls;
 	private: std::vector<sprites::Controls *> pControls;
 	private: std::vector<maps::Map> tokens;
+	private: bool splashScreen = false;
+	private: bool levelSelect = false;
+	private: bool creditScreen = false;
+	private: int curLevel = 0;
+	private: sprites::Sprites *moo = new sprites::Sprites();
+
 
 
 	//private: std::unordered_map<std::string, sprites::Sprites *> elements;
@@ -32,5 +38,9 @@ namespace games {
 	public: void addToGame(int level);
 	public: void map(); // function for map?
 	public: void cleanup();
+	public: void setupGame();
+	public: void levelSelection();
+	public: void displayCredits();
+	public: void displaySplash();
 	};
 }

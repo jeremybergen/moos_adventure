@@ -53,7 +53,16 @@ void games::GameSetup::init(std::string WindowName, int newMaxX, int newMaxY) {
 		std::cout << "Could not create render: " << SDL_GetError() << std::endl;
 	}
 	srand(time(NULL));
-
+	if (SDL_Init(SDL_INIT_AUDIO) < 0)
+	{
+		printf("SDL could not initialize! SDL Error: %s\n", SDL_GetError());
+		//success = false;
+	}
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+	{
+		printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+		//success = false;
+	}
 
 
 	Sans = TTF_OpenFont("img\\AGENCYR.ttf", 24); //this opens a font style and sets a size
