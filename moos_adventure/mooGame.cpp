@@ -204,8 +204,9 @@ void games::mooGame::evalControls() {
 
 	//Replace following line with the one after it, after maps is initilaized
 	//games::GameSetup::setScore(controls.size() - maps.getBScore());
-	int score = controls.size() - tokens[curLevel].getBScore();
-	//games::GameSetup::setScore(controls.size() - tokens[curLevel].getBScore());
+	std::cout << "Best Score: " << selectedLevel.getBScore() << std::endl << "Current # controls: " << controls.size() << std::endl;
+	int score = controls.size() - selectedLevel.getBScore();
+	//games::GameSetup::setSc ore(controls.size() - tokens[curLevel].getBScore());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
