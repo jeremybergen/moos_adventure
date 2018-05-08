@@ -1,16 +1,20 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "squares.h"
 
 namespace maps {
 	class Map {
 	private: int _mapNum;
 	private: int _bestScore;
-	private: std::vector<squares::Square *> _squares;
+	private: std::string _squareLayout;
+	//private: std::vector<squares::Square *> _squares;
+	public: std::unordered_map<std::string, squares::Square* > squareMap;
 
 
-	public: void init(int mapNum, int bestScore, std::string layout);
+
+	public: void build(int mapNum, int bestScore, std::string layout);
 	public: int getBScore();
 	};
 }

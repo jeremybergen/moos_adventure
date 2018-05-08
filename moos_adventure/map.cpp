@@ -1,6 +1,7 @@
 #include <iterator>
 #include <iostream>
 #include "map.h"
+#include "SDL.h"// Testing render/draw
 
 template<typename Out>
 void split(const std::string &s, char delim, Out result) {
@@ -17,37 +18,25 @@ std::vector<std::string> split(const std::string &s, char delim) {
 	return elems;
 }
 
-void maps::Map::init(int mapNum, int bestScore, std::string layout) {
+void maps::Map::build(int mapNum, int bestScore, std::string layout) {
 	_mapNum = mapNum;
 	_bestScore = bestScore;
+	_squareLayout = layout;
 
-	std::vector<std::string> x = split(layout, ';');
-	while (x.size() > 0) {
-		std::cout << "x.size() is: " << x.size() << std::endl;
-		squares::Square *squares = new squares::Square(x[0]);
-
-
-		_squares.push_back(squares);
-		x.erase(x.begin());
-
-	}
 	//std::cout << "start of string by char:" << std::endl;
-	for (char& c : layout) {
-		if ((c) = '1')
-		{
-			std::cout << "True ";
-			//true;
-		}
-		else
-		{
-			std::cout << "false ";
-			//false;
-		}
-	}
-	//split(layout, ';');
-	//std::cout << "this is layout, after: " << layout [0]<< layout[1] << std::endl;
+	std::vector<std::string> x = split(layout, ';');
+	int idxSquare = 0;
 
+	for (auto &square : x) {
+		squares::Square *tmpSquare = new squares::Square();
+		tmpSquare->init(square);
+		std::string tmpString = std::to_string(tmpSquare->getX()) + ":" + std::to_string(tmpSquare->getY()) + ":" + "square" + std::to_string(idxSquare);
+		squareMap.insert({ tmpString, tmpSquare });
+		idxSquare++;
+	}
 }
+
 int maps::Map::getBScore() {
 	return _bestScore;
 }
+
