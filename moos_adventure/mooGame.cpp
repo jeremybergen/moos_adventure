@@ -91,7 +91,6 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		if (splashScreen) {
 			std::cout << e.motion.x << "," << e.motion.y << std::endl;
 			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470) {
-				//games::GameSetup::setScore(controls.size());
 				games::GameSetup::scoreSetup();
 				setupGame();
 			}
@@ -205,7 +204,8 @@ void games::mooGame::evalControls() {
 
 	//Replace following line with the one after it, after maps is initilaized
 	//games::GameSetup::setScore(controls.size() - maps.getBScore());
-	games::GameSetup::setScore(controls.size());
+	int score = controls.size() - tokens[curLevel].getBScore();
+	//games::GameSetup::setScore(controls.size() - tokens[curLevel].getBScore());
 	if (pControls.size() != 0)
 		while (pControls.size() > 0) {
 			pControls.erase(pControls.begin());
@@ -257,6 +257,8 @@ void games::mooGame::evalControls() {
 		//no--;
 		it = selectedLevel.squareMap.begin();
 	}
+	//if (level == complete)
+		games::GameSetup::setScore(score);
 	std::cout << "controls: " << controls.size() << std::endl;
 }
 

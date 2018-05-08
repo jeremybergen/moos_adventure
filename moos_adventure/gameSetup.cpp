@@ -42,8 +42,8 @@ void games::GameSetup::scoreSetup() {
 	Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
 
 	Message_rect;
-	Message_rect.x = 480; //480
-	Message_rect.y = 415; // 415
+	Message_rect.x = 480;
+	Message_rect.y = 415;
 	Message_rect.w = 100;
 	Message_rect.h = 24;
 	SDL_FreeSurface(surfaceMessage);
