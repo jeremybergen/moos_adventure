@@ -90,8 +90,11 @@ void games::mooGame::eventHandler(SDL_Event e) {
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
 		if (splashScreen) {
 			std::cout << e.motion.x << "," << e.motion.y << std::endl;
-			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470)
+			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470) {
+				//games::GameSetup::setScore(controls.size());
+				games::GameSetup::scoreSetup();
 				setupGame();
+			}
 			else if (e.motion.y > 268 && e.motion.y < 318 && e.motion.x > 170 && e.motion.x < 470)
 				levelSelection();
 			else if (e.motion.y > 339 && e.motion.y < 389 && e.motion.x > 170 && e.motion.x < 470)
