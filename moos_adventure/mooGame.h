@@ -16,6 +16,7 @@ namespace games {
 	private: bool splashScreen = false;
 	private: bool levelSelect = false;
 	private: bool creditScreen = false;
+	private: bool levelComplete = false;
 	private: int curLevel = 0;
 	private: sprites::Sprites *moo = new sprites::Sprites();
 	private: bool hasGoal = false;

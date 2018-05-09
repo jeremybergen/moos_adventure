@@ -253,6 +253,7 @@ std::vector<sprites::Sprites *> games::mooGame::getCharacter() {
 
 void games::mooGame::evalControls() {
 	int u = 0;
+	int temp = pControls.size();
 	maps::Map selectedLevel = tokens[curLevel - 1];
 
 	//Replace following line with the one after it, after maps is initilaized
@@ -261,7 +262,7 @@ void games::mooGame::evalControls() {
 	int score = controls.size() - selectedLevel.getBScore();
 	//games::GameSetup::setSc ore(controls.size() - tokens[curLevel].getBScore());
 	if (pControls.size() != 0)
-		while (pControls.size() > 0) {
+		while (temp > 0) {
 			pControls.erase(pControls.begin());
 			games::Game::remove("pCntl" + std::to_string(u));
 			u++;
@@ -342,11 +343,24 @@ void games::mooGame::evalControls() {
 			no++;
 			break;
 		case 5:
+			addPControl("img\\ctrl_pick_drop", 5);
+			no++;
 			if (it->second->getGoal() == true) {
 				//DEBUG("playing gMeow");
 				hasGoal = true;
 				Mix_PlayChannel(-1, gMeow, 0);
 				games::Game::remove("mouse0");
+				temp = pControls.size() + 0;
+				if (pControls.size() != 0)
+					for (int z = 0; z < temp; z++) {
+						pControls.erase(pControls.begin());
+						games::Game::remove("pCntl" + std::to_string(z));
+					}
+				curLevel++;
+				if (curLevel != 3)
+					addToGame(curLevel);
+				else
+					setDone(true);
 			}
 			else if (it->second->getGKey() == true) {
 				hasGKey = true;
@@ -378,7 +392,7 @@ void games::mooGame::evalControls() {
 		character[0]->setPx(it->second->getX());
 		character[0]->setPy(it->second->getY());
 	}
-	//if (level == complete)
+	if (levelComplete)
 		games::GameSetup::setScore(score);
 	std::cout << "controls: " << controls.size() << std::endl;
 	//failedCommands = false;
