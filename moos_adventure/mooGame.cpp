@@ -123,6 +123,7 @@ void games::mooGame::eventHandler(SDL_Event e) {
 		if (splashScreen) {
 			std::cout << e.motion.x << "," << e.motion.y << std::endl;
 			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470) {
+				score = 0;
 				setupGame(1);
 			}
 			else if (e.motion.y > 268 && e.motion.y < 318 && e.motion.x > 170 && e.motion.x < 470)
@@ -259,7 +260,7 @@ void games::mooGame::evalControls() {
 	//Replace following line with the one after it, after maps is initilaized
 	//games::GameSetup::setScore(controls.size() - maps.getBScore());
 	std::cout << "Best Score: " << selectedLevel.getBScore() << std::endl << "Current # controls: " << controls.size() << std::endl;
-	int score = controls.size() - selectedLevel.getBScore();
+	score = score + (controls.size() - selectedLevel.getBScore());
 	//games::GameSetup::setSc ore(controls.size() - tokens[curLevel].getBScore());
 	if (pControls.size() != 0)
 		while (temp > 0) {
@@ -493,6 +494,7 @@ void games::mooGame::cleanup() {
 
 void games::mooGame::setupGame(int levelNum) {
 	games::Game::clearSprites();
+
 	sprites::Sprites *back = new sprites::Sprites();
 	back->init(this, "img\\back", 1);
 	back->setup();
@@ -502,10 +504,12 @@ void games::mooGame::setupGame(int levelNum) {
 
 	splashScreen = false;
 	levelSelect = false;
+	hasGoal = false;
 	creditScreen = false;
 	Mix_HaltMusic();
 	addToGame(levelNum);
 	curLevel = levelNum;
+	games::GameSetup::setScore(score);
 }
 
 void games::mooGame::levelSelection() {

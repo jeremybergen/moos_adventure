@@ -13,6 +13,7 @@ namespace games {
 	private: std::vector<sprites::Controls *> controls;
 	private: std::vector<sprites::Controls *> pControls;
 	private: std::vector<maps::Map> tokens;
+	private: int score;
 	private: bool splashScreen = false;
 	private: bool levelSelect = false;
 	private: bool creditScreen = false;
