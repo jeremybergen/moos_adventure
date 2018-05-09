@@ -21,6 +21,7 @@ namespace games {
 	public: void updateSprites(float dt);
 	//public: void addCtrl(sprites::Sprites *s);
 	public: void remove(std::string key);
+	public: void clearSprites();
 	//public: void removeP(std::string key);
 	public: void loop(float dt);
 	};

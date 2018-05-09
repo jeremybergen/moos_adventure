@@ -1,6 +1,7 @@
 # line order is mapnum,bestscore,squareLayouts
 # squareLayous is x:y:squareBool
-# squareBool is currently in order, goal/pickup/left/down/right/up
+# squareBool is currently in order, goldKey/goldLock/goal/pickup/left/down/right/up
 # put 1 if valid, future expansion possible does not need to be 0 padded
 1,2,25:25:10;75:25:111000
 2,3,25:25:10;75:25:1010;125:25:111000
+3,8,25:25:100;25:75:11;75:75:1110;75:125:10000001;125:75:1001001;125:25:100100

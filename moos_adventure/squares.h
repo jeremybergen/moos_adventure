@@ -17,12 +17,21 @@ namespace squares {
 	private: bool _left = false;
 	private: bool _pickup = false;
 	private: bool _goal = false;
+	private: bool _goldLock = false;
+	private: bool _goldKey = false;
 	//private: std::unordered_map<std::string, squares::Square* > squareMap;
 
 	public: void init(std::string strsquare);
 	public: int getX();
 	public: int getY();
+	public: bool getUp();
+	public: bool getRight();
+	public: bool getDown();
+	public: bool getLeft();
 	public: bool getGoal();
+	public: bool getGLock();
+	public: bool getGKey();
+	public: bool setGLock();
 	//public: std::unordered_map
 	//public: Maping(std::string square);
 	};

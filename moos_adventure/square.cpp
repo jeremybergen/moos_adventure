@@ -55,6 +55,13 @@ void squares::Square::init(std::string strsquare) {
 			case 5:
 				_goal = true;
 				break;
+			case 6:
+				//gold lock
+				_goldLock = true;
+				break;
+			case 7:
+				_goldKey = true;
+				break;
 			defaut:
 				DEBUG("Not implemented yet");
 				break;
@@ -102,11 +109,40 @@ int squares::Square::getY()
 	return _y;
 }
 
+bool squares::Square::getUp()
+{
+	return _up;
+}
+
+bool squares::Square::getRight()
+{
+	return _right;
+}
+
+bool squares::Square::getDown()
+{
+	return _down;
+}
+
+bool squares::Square::getLeft()
+{
+	return _left;
+}
+
 bool squares::Square::getGoal()
 {
 	return _goal;
 }
 
+bool squares::Square::getGLock()
+{
+	return _goldLock;
+}
+
+bool squares::Square::getGKey()
+{
+	return _goldKey;
+}
 	/*
 void Mapping(std::string)
 {

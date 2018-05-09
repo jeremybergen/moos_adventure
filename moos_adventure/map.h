@@ -10,7 +10,8 @@ namespace maps {
 	private: int _bestScore;
 	private: std::string _squareLayout;
 	//private: std::vector<squares::Square *> _squares;
-	public: std::unordered_map<std::string, squares::Square* > squareMap;
+	//public: std::unordered_map<std::string, squares::Square* > squareMap;
+	public: std::vector<std::pair<std::string, squares::Square*>> squareMap;
 
 
 

@@ -39,6 +39,10 @@ void games::Game::remove(std::string key) {
 
 	//controls.erase(controls.begin());
 }
+void games::Game::clearSprites()
+{
+	sprites.clear();
+}
 /*
 void games::Game::removeP(std::string key) {
 	std::unordered_map<std::string, sprites::Sprites *>::iterator it = pSprites.begin();

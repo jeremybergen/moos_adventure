@@ -116,6 +116,21 @@
     <Image Include="img\moo1.bmp">
       <Filter>img</Filter>
     </Image>
+    <Image Include="img\glock0.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\gkey3.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\gkey2.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\gkey1.bmp">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="img\gkey0.bmp">
+      <Filter>img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gameSetup.h">
