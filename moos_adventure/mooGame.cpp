@@ -357,8 +357,8 @@ void games::mooGame::evalControls() {
 						games::Game::remove("pCntl" + std::to_string(z));
 					}
 				curLevel++;
-				if (curLevel != 3)
-					addToGame(curLevel);
+				if (curLevel != 5)
+					setupGame(curLevel);
 				else
 					setDone(true);
 			}
@@ -372,8 +372,6 @@ void games::mooGame::evalControls() {
 				games::Game::remove("pKey0");
 				games::Game::remove("pLock0");
 			}
-			addPControl("img\\ctrl_pick_drop", 5);
-			no++;
 
 			break;
 		default:
