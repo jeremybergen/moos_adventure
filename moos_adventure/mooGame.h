@@ -18,8 +18,9 @@ namespace games {
 	private: bool creditScreen = false;
 	private: int curLevel = 0;
 	private: sprites::Sprites *moo = new sprites::Sprites();
-
+	private: bool hasGoal = false;
 	private: bool hasGKey = false;
+	private: bool hasPKey = false;
 	private: bool failedCommands = false;
 
 
@@ -41,7 +42,7 @@ namespace games {
 	public: void addToGame(int level);
 	public: void map(); // function for map?
 	public: void cleanup();
-	public: void setupGame();
+	public: void setupGame(int levelNum);
 	public: void levelSelection();
 	public: void displayCredits();
 	public: void displaySplash();

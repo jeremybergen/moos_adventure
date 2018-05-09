@@ -62,6 +62,12 @@ void squares::Square::init(std::string strsquare) {
 			case 7:
 				_goldKey = true;
 				break;
+			case 8:
+				_purpleLock = true;
+				break;
+			case 9:
+				_purpleKey = true;
+				break;
 			defaut:
 				DEBUG("Not implemented yet");
 				break;
@@ -142,6 +148,14 @@ bool squares::Square::getGLock()
 bool squares::Square::getGKey()
 {
 	return _goldKey;
+}
+bool squares::Square::getPurpleLock()
+{
+	return _purpleLock;
+}
+bool squares::Square::getPurpleKey()
+{
+	return _purpleKey;
 }
 	/*
 void Mapping(std::string)

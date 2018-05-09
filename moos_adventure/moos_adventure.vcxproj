@@ -163,6 +163,7 @@
     <Image Include="img\key1.bmp" />
     <Image Include="img\key2.bmp" />
     <Image Include="img\key3.bmp" />
+    <Image Include="img\levelSelect0.bmp" />
     <Image Include="img\lock0.bmp" />
     <Image Include="img\moo0.bmp" />
     <Image Include="img\moo1.bmp" />
@@ -175,6 +176,11 @@
     <Image Include="img\mouse1.bmp" />
     <Image Include="img\mouse2.bmp" />
     <Image Include="img\mouse3.bmp" />
+    <Image Include="img\pkey0.bmp" />
+    <Image Include="img\pkey1.bmp" />
+    <Image Include="img\pkey2.bmp" />
+    <Image Include="img\pkey3.bmp" />
+    <Image Include="img\plock0.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animationFrame.h" />

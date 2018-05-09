@@ -19,6 +19,8 @@ namespace squares {
 	private: bool _goal = false;
 	private: bool _goldLock = false;
 	private: bool _goldKey = false;
+	private: bool _purpleLock = false;
+	private: bool _purpleKey = false;
 	//private: std::unordered_map<std::string, squares::Square* > squareMap;
 
 	public: void init(std::string strsquare);
@@ -31,6 +33,8 @@ namespace squares {
 	public: bool getGoal();
 	public: bool getGLock();
 	public: bool getGKey();
+	public: bool getPurpleLock();
+	public: bool getPurpleKey();
 	public: bool setGLock();
 	//public: std::unordered_map
 	//public: Maping(std::string square);

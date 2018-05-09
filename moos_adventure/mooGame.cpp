@@ -62,40 +62,68 @@ void games::mooGame::setup() {
 }
 
 void games::mooGame::eventHandler(SDL_Event e) {
-	if (e.type == SDL_KEYDOWN && splashScreen != true) {
-		if (e.key.keysym.sym == SDLK_ESCAPE) {
-			setDone(true);
+	if (e.type == SDL_KEYDOWN) {
+		if (!splashScreen && !levelSelect && !creditScreen) {
+			if (e.key.keysym.sym == SDLK_ESCAPE) {
+				setDone(true);
+			}
+			if (e.key.keysym.sym == SDLK_LEFT) {
+				//DEBUG("pressed left key");
+				addControl("img\\ctrl_left", 1);
+			}
+			if (e.key.keysym.sym == SDLK_RIGHT) {
+				addControl("img\\ctrl_right", 2);
+			}
+			if (e.key.keysym.sym == SDLK_UP) {
+				addControl("img\\ctrl_up", 3);
+			}
+			if (e.key.keysym.sym == SDLK_DOWN) {
+				addControl("img\\ctrl_down", 4);
+			}
+			if (e.key.keysym.sym == SDLK_RETURN) {
+				addControl("img\\ctrl_pick_drop", 5);
+			}
+			if (e.key.keysym.sym == SDLK_SPACE) {
+				evalControls();
+				no = 0;
+			}
+			if (e.key.keysym.sym == SDLK_h) {
+				displaySplash();
+			}
 		}
-		if (e.key.keysym.sym == SDLK_LEFT) {
-			//DEBUG("pressed left key");
-			addControl("img\\ctrl_left", 1);
+		if (levelSelect) {
+			if (e.key.keysym.sym == SDLK_1)
+				setupGame(1);
+			else if (e.key.keysym.sym == SDLK_2)
+				setupGame(2);
+			else if (e.key.keysym.sym == SDLK_3)
+				setupGame(3);
+			else if (e.key.keysym.sym == SDLK_4)
+				setupGame(4);
+			else if (e.key.keysym.sym == SDLK_h) {
+				displaySplash();
+			}
 		}
-		if (e.key.keysym.sym == SDLK_RIGHT) {
-			addControl("img\\ctrl_right", 2);
+		if (splashScreen) {
+			if (e.key.keysym.sym == SDLK_s)
+				setupGame(1);
+			else if (e.key.keysym.sym == SDLK_l)
+				levelSelection();
+			else if (e.key.keysym.sym == SDLK_c)
+				displayCredits();
+			else if (e.key.keysym.sym == SDLK_q)
+				setDone(true);
 		}
-		if (e.key.keysym.sym == SDLK_UP) {
-			addControl("img\\ctrl_up", 3);
-		}
-		if (e.key.keysym.sym == SDLK_DOWN) {
-			addControl("img\\ctrl_down", 4);
-		}
-		if (e.key.keysym.sym == SDLK_RETURN) {
-			addControl("img\\ctrl_pick_drop", 5);
-		}
-		if (e.key.keysym.sym == SDLK_SPACE) {
-			evalControls();
-			no = 0;
-		}
-		if (e.key.keysym.sym == SDLK_h) {
-			displaySplash();
-		}
+		
 	}
+	if (e.type == SDL_QUIT)
+		setDone(true);
+
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
 		if (splashScreen) {
 			std::cout << e.motion.x << "," << e.motion.y << std::endl;
 			if (e.motion.y > 200 && e.motion.y < 250 && e.motion.x > 170 && e.motion.x < 470) {
-				games::GameSetup::scoreSetup();
-				setupGame();
+				setupGame(1);
 			}
 			else if (e.motion.y > 268 && e.motion.y < 318 && e.motion.x > 170 && e.motion.x < 470)
 				levelSelection();
@@ -103,11 +131,27 @@ void games::mooGame::eventHandler(SDL_Event e) {
 				displayCredits();
 			else if (e.motion.y > 409 && e.motion.y < 459 && e.motion.x > 170 && e.motion.x < 470)
 				setDone(true);
-		} else if (creditScreen) {
+		}
+		else if (creditScreen) {
 			if (e.motion.y > 373 && e.motion.y < 423 && e.motion.x > 170 && e.motion.x < 470) {
-				games::Game::remove("credits0");
+				//games::Game::remove("credits0");
 				displaySplash();
 			}
+		}
+		else if (levelSelect) {
+			//35,104
+				if (e.motion.y > 442 && e.motion.y < 472 && e.motion.x > 494 && e.motion.x < 594) {
+					//games::Game::remove("credits0");
+					displaySplash();
+				}
+				else if (e.motion.y > 104 && e.motion.y < 154 && e.motion.x > 35 && e.motion.x < 85)
+					setupGame(1);
+				else if (e.motion.y > 104 && e.motion.y < 154 && e.motion.x > 107 && e.motion.x < 157)
+					setupGame(2);
+				else if (e.motion.y > 104 && e.motion.y < 154 && e.motion.x > 177 && e.motion.x < 227)
+					setupGame(3);
+				else if (e.motion.y > 104 && e.motion.y < 154 && e.motion.x > 246 && e.motion.x < 296)
+					setupGame(4);
 		}else {
 			//494 442 / 594, 472
 			failedCommands = false;
@@ -237,7 +281,7 @@ void games::mooGame::evalControls() {
 				break;
 			}
 			while (it2->second->getX() != moo->getPx() - 50|| it2->second->getY() != moo->getPy()) { it2++; }
-			if (it2->second->getGLock() == true && hasGKey == false) {
+			if ((it2->second->getGLock() == true && hasGKey == false) || (it2->second->getPurpleLock() == true && hasPKey == false)) {
 				addPControl("img\\ctrl_left", 1);
 				no++;
 				break;
@@ -254,7 +298,7 @@ void games::mooGame::evalControls() {
 				break;
 			}
 			while (it2->second->getX() != moo->getPx() + 50 || it2->second->getY() != moo->getPy()) { it2++; }
-			if (it2->second->getGLock() == true && hasGKey == false) {
+			if ((it2->second->getGLock() == true && hasGKey == false) || (it2->second->getPurpleLock() == true && hasPKey == false)) {
 				addPControl("img\\ctrl_right", 2);
 				no++;
 				break;
@@ -271,7 +315,7 @@ void games::mooGame::evalControls() {
 				break;
 			}
 			while (it2->second->getX() != moo->getPx() || it2->second->getY() != moo->getPy() - 50) { it2++; }
-			if (it2->second->getGLock() == true && hasGKey == false) {
+			if ((it2->second->getGLock() == true && hasGKey == false) || (it2->second->getPurpleLock() == true && hasPKey == false)) {
 				addPControl("img\\ctrl_up", 3);
 				no++;
 				break;
@@ -288,7 +332,7 @@ void games::mooGame::evalControls() {
 				break;
 			}
 			while (it2->second->getX() != moo->getPx() || it2->second->getY() != moo->getPy() + 50) { it2++; }
-			if (it2->second->getGLock() == true && hasGKey == false) {
+			if ((it2->second->getGLock() == true && hasGKey == false) || (it2->second->getPurpleLock() == true && hasPKey == false)) {
 				addPControl("img\\ctrl_down", 4);
 				no++;
 				break;
@@ -300,6 +344,7 @@ void games::mooGame::evalControls() {
 		case 5:
 			if (it->second->getGoal() == true) {
 				//DEBUG("playing gMeow");
+				hasGoal = true;
 				Mix_PlayChannel(-1, gMeow, 0);
 				games::Game::remove("mouse0");
 			}
@@ -307,7 +352,12 @@ void games::mooGame::evalControls() {
 				hasGKey = true;
 				games::Game::remove("gKey0");
 				games::Game::remove("gLock0");
-			} 
+			}
+			else if (it->second->getPurpleKey() == true) {
+				hasPKey = true;
+				games::Game::remove("pKey0");
+				games::Game::remove("pLock0");
+			}
 			addPControl("img\\ctrl_pick_drop", 5);
 			no++;
 
@@ -322,6 +372,11 @@ void games::mooGame::evalControls() {
 		//no--;
 		it = selectedLevel.squareMap.begin();
 		it2 = selectedLevel.squareMap.begin();
+		
+	}
+	if (failedCommands || hasGoal == false) {
+		character[0]->setPx(it->second->getX());
+		character[0]->setPy(it->second->getY());
 	}
 	//if (level == complete)
 		games::GameSetup::setScore(score);
@@ -401,6 +456,18 @@ void games::mooGame::addToGame(int level)
 			gLock->setup();
 			add("gLock0", gLock);
 		}
+		if (it->second->getPurpleLock() == true) {
+			sprites::Sprites *pLock = new sprites::Sprites();
+			pLock->init(this, "img\\pLock", 1, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			pLock->setup();
+			add("pLock0", pLock);
+		}
+		if (it->second->getPurpleKey() == true) {
+			sprites::Sprites *pKey = new sprites::Sprites();
+			pKey->init(this, "img\\pKey", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			pKey->setup();
+			add("pKey0", pKey);
+		}
 		it++;
 	}
 }
@@ -410,25 +477,31 @@ void games::mooGame::cleanup() {
 
 }
 
-void games::mooGame::setupGame() {
+void games::mooGame::setupGame(int levelNum) {
+	games::Game::clearSprites();
 	sprites::Sprites *back = new sprites::Sprites();
 	back->init(this, "img\\back", 1);
 	back->setup();
 	add("back0",back);
-	games::Game::remove("splash0");
+	//games::Game::remove("splash0");
+	games::GameSetup::scoreSetup();
+
 	splashScreen = false;
+	levelSelect = false;
+	creditScreen = false;
 	Mix_HaltMusic();
-	addToGame(3);
-	curLevel = 3;
+	addToGame(levelNum);
+	curLevel = levelNum;
 }
 
 void games::mooGame::levelSelection() {
 	sprites::Sprites *back = new sprites::Sprites();
-	back->init(this, "img\\back", 1);
+	back->init(this, "img\\levelSelect", 1);
 	back->setup();
-	add("back0", back);
+	add("levelSelect0", back);
 
 	splashScreen = false;
+	levelSelect = true;
 	games::Game::remove("splash0");
 
 }
