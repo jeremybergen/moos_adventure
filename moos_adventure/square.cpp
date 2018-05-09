@@ -109,6 +109,26 @@ int squares::Square::getY()
 	return _y;
 }
 
+bool squares::Square::getUp()
+{
+	return _up;
+}
+
+bool squares::Square::getRight()
+{
+	return _right;
+}
+
+bool squares::Square::getDown()
+{
+	return _down;
+}
+
+bool squares::Square::getLeft()
+{
+	return _left;
+}
+
 bool squares::Square::getGoal()
 {
 	return _goal;

@@ -24,6 +24,10 @@ namespace squares {
 	public: void init(std::string strsquare);
 	public: int getX();
 	public: int getY();
+	public: bool getUp();
+	public: bool getRight();
+	public: bool getDown();
+	public: bool getLeft();
 	public: bool getGoal();
 	public: bool getGLock();
 	public: bool getGKey();

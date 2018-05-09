@@ -20,6 +20,7 @@ namespace games {
 	private: sprites::Sprites *moo = new sprites::Sprites();
 
 	private: bool hasGKey = false;
+	private: bool failedCommands = false;
 
 
 
