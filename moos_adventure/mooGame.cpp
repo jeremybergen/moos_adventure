@@ -384,7 +384,7 @@ void games::mooGame::evalControls() {
 		//no--;
 		it = selectedLevel.squareMap.begin();
 		it2 = selectedLevel.squareMap.begin();
-		
+		std::cout << "";
 	}
 	if (failedCommands || hasGoal == false) {
 		character[0]->setPx(it->second->getX());
