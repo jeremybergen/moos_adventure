@@ -266,6 +266,7 @@ void games::mooGame::evalControls() {
 			pControls.erase(pControls.begin());
 			games::Game::remove("pCntl" + std::to_string(u));
 			u++;
+			temp--;
 		}
 	std::vector<std::pair<std::string, squares::Square*>>::iterator it = selectedLevel.squareMap.begin();
 	std::vector<std::pair<std::string, squares::Square*>>::iterator it2 = selectedLevel.squareMap.begin();
@@ -360,7 +361,8 @@ void games::mooGame::evalControls() {
 				if (curLevel != 5)
 					setupGame(curLevel);
 				else
-					setDone(true);
+					displaySplash();
+				break;
 			}
 			else if (it->second->getGKey() == true) {
 				hasGKey = true;
