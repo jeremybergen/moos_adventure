@@ -94,6 +94,7 @@ void squares::Square::init(std::string strsquare) {
 
 int squares::Square::getX()
 {
+
 	return _x;
 }
 

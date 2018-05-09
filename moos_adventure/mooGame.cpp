@@ -270,6 +270,14 @@ void games::mooGame::addToGame(int level)
 			mouse->setup();
 			add("mouse0", mouse);
 		}
+		//added. repositioning?
+		if (it->second->getX() & it->second->getY == false) {
+			sprites::Sprites *moo = new sprites::Sprites();
+			moo->init(this, "img\\moo", 4, 0, 0, 0, 0, it->second->getX(), it->second->getY(), 0);
+			moo->setup();
+			add("moo0", moo);
+			character.push_back(moo);
+		}
 		it++;
 	}
 }
